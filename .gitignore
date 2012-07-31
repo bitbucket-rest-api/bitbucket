@@ -1,0 +1,11 @@
+coverage
+rdoc
+doc
+.yardoc
+.bundle
+pkg
+*.swp
+log
+*.sqlite3
+features/settings.yml
+*.gem
