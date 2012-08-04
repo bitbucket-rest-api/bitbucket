@@ -66,8 +66,8 @@ module BitBucket
       assert_valid_values(VALID_ISSUE_PARAM_VALUES, params)
 
       response = get_request("/repositories/#{user}/#{repo}/issues", params)
-      return response unless block_given?
-      response.each { |el| yield el }
+      return response.issues unless block_given?
+      response.issues.each { |el| yield el }
     end
 
     alias :list_repository :list_repo

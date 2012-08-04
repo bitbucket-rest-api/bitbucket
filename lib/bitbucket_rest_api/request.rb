@@ -48,7 +48,6 @@ module BitBucket
           request.body = extract_data_from_params(params) unless params.empty?
         end
       end
-      puts response
       response.body
     end
 

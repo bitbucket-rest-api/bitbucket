@@ -7,8 +7,8 @@ Gem::Specification.new do |gem|
   gem.authors       = [ "Mike Cochran" ]
   gem.email         = "mcochran@linux.com"
   gem.homepage      = 'https://github.com/exceptionary/bitbucket'
-  gem.summary       = %q{ Ruby wrapper for the BitBucket API }
-  gem.description   = %q{ Ruby wrapper for the BitBucket API }
+  gem.summary       = %q{ Ruby wrapper for the BitBucket API supporting OAuth and Basic Authentication }
+  gem.description   = %q{ Ruby wrapper for the BitBucket API supporting OAuth and Basic Authentication }
   gem.version       = BitBucket::VERSION::STRING.dup
 
   gem.files = Dir['Rakefile', '{features,lib,spec}/**/*', 'README*', 'LICENSE*']
@@ -17,8 +17,9 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'hashie', '~> 1.2.0'
   gem.add_dependency 'faraday', '~> 0.8.1'
   gem.add_dependency 'multi_json', '~> 1.3'
-  gem.add_dependency 'oauth'
+  gem.add_dependency 'faraday_middleware', '~> 0.8.1'
   gem.add_dependency 'nokogiri', '~> 1.5.2'
+  gem.add_dependency 'simple_oauth'
 
   gem.add_development_dependency 'rspec', '>= 0'
   gem.add_development_dependency 'cucumber', '>= 0'

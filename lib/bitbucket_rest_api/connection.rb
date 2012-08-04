@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'faraday'
+require 'faraday_middleware'
 require 'bitbucket_rest_api/response'
 require 'bitbucket_rest_api/response/mashify'
 require 'bitbucket_rest_api/response/jsonize'
@@ -26,10 +27,7 @@ module BitBucket
     def default_options(options={})
       {
           :headers => {
-              ACCEPT           => "application/json;q=0.1",
-              ACCEPT_CHARSET   => "utf-8",
-              USER_AGENT       => user_agent,
-              CONTENT_TYPE     => 'application/json'
+              USER_AGENT       => user_agent
           },
           :ssl => { :verify => false },
           :url => options.fetch(:endpoint) { BitBucket.endpoint }
@@ -41,11 +39,12 @@ module BitBucket
     #
     def default_middleware(options={})
       Proc.new do |builder|
-        builder.use BitBucket::Request::Jsonize
+        #builder.use BitBucket::Request::Jsonize
         builder.use Faraday::Request::Multipart
         builder.use Faraday::Request::UrlEncoded
-        builder.use BitBucket::Request::OAuth, client, oauth_token, oauth_secret if oauth_token? and oauth_secret?
+        builder.use FaradayMiddleware::OAuth, {:consumer_key => client_id, :consumer_secret => client_secret, :token => oauth_token, :token_secret => oauth_secret} if oauth_token? and oauth_secret?
         builder.use BitBucket::Request::BasicAuth, authentication if basic_authed?
+        builder.use FaradayMiddleware::EncodeJson
 
         builder.use Faraday::Response::Logger if ENV['DEBUG']
         builder.use BitBucket::Response::Helpers

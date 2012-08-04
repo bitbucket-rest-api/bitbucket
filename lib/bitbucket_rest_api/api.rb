@@ -40,7 +40,6 @@ module BitBucket
       super()
       setup options
       set_api_client
-      client if client_id? && client_secret?
 
       self.instance_eval(&block) if block_given?
     end
