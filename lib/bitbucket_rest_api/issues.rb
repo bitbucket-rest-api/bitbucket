@@ -49,10 +49,10 @@ module BitBucket
 
     # List issues for a repository
     #
-    # = Parameters
-    # <tt>:filter</tt> - Optional See https://confluence.atlassian.com/display/BITBUCKET/Issues#Issues-Filtering for building the filter string
-    # <tt>:start</tt> - Optional - Issue offset, default 0
-    # <tt>:limit</tt> - Optional - Number of issues to retrieve, default 15
+    # = Inputs
+    #  <tt>:filter</tt> - Optional - See https://confluence.atlassian.com/display/BITBUCKET/Issues#Issues-Filtering for building the filter string
+    #  <tt>:start</tt> - Optional - Issue offset, default 0
+    #  <tt>:limit</tt> - Optional - Number of issues to retrieve, default 15
     #
     # = Examples
     #  bitbucket = BitBucket.new :user => 'user-name', :repo => 'repo-name'
