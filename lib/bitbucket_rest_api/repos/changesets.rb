@@ -14,19 +14,19 @@ module BitBucket
     # List changesets on a repository
     #
     # = Parameters
-    # * <tt>:sha</tt>   Optional string. Sha or branch to start listing changesets from.
-    # * <tt>:path</tt>  Optional string. Only changesets containing this file path will be returned
+    # * <tt>:limit</tt> Optional integer. An integer representing how many changesets to return. You can specify a limit between 0 and 50.
+    # * <tt>:start</tt> Optional string. A hash value representing the earliest node to start with.
     #
     # = Examples
     #  bitbucket = BitBucket.new
-    #  bitbucket.repos.changesets.list 'user-name', 'repo-name', :sha => '...'
-    #  bitbucket.repos.changesets.list 'user-name', 'repo-name', :sha => '...' { |changeset| ... }
+    #  bitbucket.repos.changesets.list 'user-name', 'repo-name', :start => '...'
+    #  bitbucket.repos.changesets.list 'user-name', 'repo-name', :start => '...' { |changeset| ... }
     #
     def list(user_name, repo_name, params={})
       _update_user_repo_params(user_name, repo_name)
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
-      filter! %w[ sha path], params
+      filter! %w[ limit start], params
 
       response = get_request("/repositories/#{user}/#{repo}/changesets", params)
       return response unless block_given?
