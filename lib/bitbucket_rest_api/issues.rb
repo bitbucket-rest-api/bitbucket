@@ -6,7 +6,7 @@ module BitBucket
 
     autoload_all 'bitbucket_rest_api/issues',
                  :Comments   => 'comments',
-                 :Components => 'Components',
+                 :Components => 'components',
                  :Milestones => 'milestones'
 
     VALID_ISSUE_PARAM_NAMES = %w[
