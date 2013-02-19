@@ -29,16 +29,18 @@ bitbucket = BitBucket.new
 At this stage you can also supply various configuration parameters, such as `:user`,`:repo`, `:oauth_token`, `:oauth_secret`, `:basic_auth` which are used throughout the API. These can be passed directly as hash options:
 
 ```ruby
-bitbucket = BitBucket.new oauth_token: 'token', oauth_secret: 'secret'
+bitbucket = BitBucket.new oauth_token: 'request_token', oauth_secret: 'request_secret'
 ```
 
 Alternatively, you can configure the BitBucket settings by passing a block, for instance, with custom enteprise endpoint like
 
 ```ruby
 bitbucket = BitBucket.new do |config|
-  config.oauth_token  = 'token'
-  config.oauth_secret = 'secret'
-  config.adapter      = :net_http
+  config.oauth_token   = 'request_token'
+  config.oauth_secret  = 'request_secret'
+  config.client_id     = 'consumer_key'
+  config.client_secret = 'consumer_secret'
+  config.adapter       = :net_http
 end
 ```
 
