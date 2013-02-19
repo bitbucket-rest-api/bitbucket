@@ -144,14 +144,16 @@ register an app with BitBucket.
 
 ```ruby
 BitBucket.configure do |config|
-  config.oauth_token   = YOUR_OAUTH_ACCESS_TOKEN
-  config.oauth_secret  = YOUR_OAUTH_ACCESS_TOKEN_SECRET
+  config.oauth_token   = YOUR_OAUTH_REQUEST_TOKEN          # Different for each user
+  config.oauth_secret  = YOUR_OAUTH_REQUEST_TOKEN_SECRET   # Differenct for each user
+  config.client_id     = YOUR_OAUTH_CONSUMER_TOKEN
+  config.client_secret = YOUR_OAUTH_CONSUMER_TOKEN_SECRET
   config.basic_auth    = 'login:password'
 end
 
 or
 
-BitBucket.new(:oauth_token => YOUR_OAUTH_TOKEN, :oauth_secret => YOUR_OAUTH_ACCESS_TOKEN_SECRET)
+BitBucket.new(:oauth_token => YOUR_OAUTH_REQUEST_TOKEN, :oauth_secret => YOUR_OAUTH_REQUEST_TOKEN_SECRET)
 BitBucket.new(:basic_auth => 'login:password')
 ```
 
