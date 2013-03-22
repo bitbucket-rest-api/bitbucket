@@ -15,7 +15,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
 
-      response = get_request("/repositories/#{user}/#{repo}/followers/", params)
+      response = get_request("/repositories/#{user}/#{repo.downcase}/followers/", params)
       return response unless block_given?
       response.each { |el| yield el }
     end

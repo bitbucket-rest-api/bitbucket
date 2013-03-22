@@ -67,7 +67,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless (user? && repo?)
       normalize! params
 
-      response = get_request("/repositories/#{user}/#{repo}/branches/", params)
+      response = get_request("/repositories/#{user}/#{repo.downcase}/branches/", params)
       return response unless block_given?
       response.each { |el| yield el }
     end
@@ -138,7 +138,7 @@ module BitBucket
       normalize! params
       filter! VALID_REPO_OPTIONS, params
 
-      put_request("/repositories/#{user}/#{repo}/", DEFAULT_REPO_OPTIONS.merge(params))
+      put_request("/repositories/#{user}/#{repo.downcase}/", DEFAULT_REPO_OPTIONS.merge(params))
     end
 
     # Get a repository
@@ -152,7 +152,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
 
-      get_request("/repositories/#{user}/#{repo}", params)
+      get_request("/repositories/#{user}/#{repo.downcase}", params)
     end
 
     alias :find :get
@@ -200,7 +200,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
 
-      response = get_request("/repositories/#{user}/#{repo}/tags/", params)
+      response = get_request("/repositories/#{user}/#{repo.downcase}/tags/", params)
       return response unless block_given?
       response.each { |el| yield el }
     end
