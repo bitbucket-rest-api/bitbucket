@@ -11,7 +11,7 @@ module BitBucket
                  :Following      => 'following'
 
     DEFAULT_REPO_OPTIONS = {
-        "homepage"        => "https://bitbucket.org",
+        "website"         => "",
         "is_private"      => false,
         "has_issues"      => false,
         "has_wiki"        => false,
@@ -20,6 +20,7 @@ module BitBucket
     }.freeze
 
     VALID_REPO_OPTIONS = %w[
+      owner
       name
       description
       website
@@ -66,7 +67,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless (user? && repo?)
       normalize! params
 
-      response = get_request("/repositories/#{user}/#{repo}/branches/", params)
+      response = get_request("/repositories/#{user}/#{repo.downcase}/branches/", params)
       return response unless block_given?
       response.each { |el| yield el }
     end
@@ -115,8 +116,8 @@ module BitBucket
     # = Parameters
     # * <tt>:name</tt> Required string
     # * <tt>:description</tt>   Optional string
-    # * <tt>:homepage</tt>      Optional string
-    #  <tt>:private</tt> - Optional boolean - <tt>false</tt> to create public reps, <tt>false</tt> to create a private one
+    # * <tt>:website</tt>       Optional string
+    # * <tt>:private</tt> - Optional boolean - <tt>false</tt> to create public reps, <tt>false</tt> to create a private one
     # * <tt>:has_issues</tt>    Optional boolean - <tt>true</tt> to enable issues for this repository, <tt>false</tt> to disable them
     # * <tt>:has_wiki</tt>      Optional boolean - <tt>true</tt> to enable the wiki for this repository, <tt>false</tt> to disable it. Default is <tt>true</tt>
     # * <tt>:has_downloads</tt> Optional boolean - <tt>true</tt> to enable downloads for this repository
@@ -127,7 +128,7 @@ module BitBucket
     #  bitbucket.repos.edit 'user-name', 'repo-name',
     #    :name => 'hello-world',
     #    :description => 'This is your first repo',
-    #    :homepage => "https://bitbucket.com",
+    #    :website => "https://bitbucket.com",
     #    :public => true, :has_issues => true
     #
     def edit(user_name, repo_name, params={ })
@@ -137,7 +138,7 @@ module BitBucket
       normalize! params
       filter! VALID_REPO_OPTIONS, params
 
-      put_request("/repositories/#{user}/#{repo}/", DEFAULT_REPO_OPTIONS.merge(params))
+      put_request("/repositories/#{user}/#{repo.downcase}/", DEFAULT_REPO_OPTIONS.merge(params))
     end
 
     # Get a repository
@@ -151,7 +152,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
 
-      get_request("/repositories/#{user}/#{repo}", params)
+      get_request("/repositories/#{user}/#{repo.downcase}", params)
     end
 
     alias :find :get
@@ -199,7 +200,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
 
-      response = get_request("/repositories/#{user}/#{repo}/tags/", params)
+      response = get_request("/repositories/#{user}/#{repo.downcase}/tags/", params)
       return response unless block_given?
       response.each { |el| yield el }
     end
