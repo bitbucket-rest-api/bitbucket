@@ -136,9 +136,8 @@ module BitBucket
 
       normalize! params
       filter! VALID_REPO_OPTIONS, params
-      assert_required_keys(%w[ name ], params)
 
-      patch_request("/repositories/#{user}/#{repo}/", DEFAULT_REPO_OPTIONS.merge(params))
+      put_request("/repositories/#{user}/#{repo}/", DEFAULT_REPO_OPTIONS.merge(params))
     end
 
     # Get a repository
