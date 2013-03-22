@@ -20,6 +20,7 @@ module BitBucket
     }.freeze
 
     VALID_REPO_OPTIONS = %w[
+      owner
       name
       description
       website
