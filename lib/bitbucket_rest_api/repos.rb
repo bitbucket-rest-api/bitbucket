@@ -9,7 +9,7 @@ module BitBucket
                  :Changesets       => 'changesets',
                  :Keys          => 'keys',
                  :Following      => 'following',
-                 :Sources      => 'sources',
+                 :Sources      => 'sources'
 
     DEFAULT_REPO_OPTIONS = {
         "website"         => "",
