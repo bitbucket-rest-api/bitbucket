@@ -1,6 +1,6 @@
 # BitBucketAPI
 
-[Wiki](https://bitbucket.com/vongrippen/bitbucket/wiki) | [RDocs](http://rubydoc.info/github/vongrippen/bitbucket/master/frames)
+[Wiki](https://github.com/vongrippen/bitbucket/wiki) | [RDocs](http://rubydoc.info/github/vongrippen/bitbucket/master/frames)
 
 A Ruby wrapper for the BitBucket REST API.
 
