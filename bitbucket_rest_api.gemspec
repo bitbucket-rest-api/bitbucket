@@ -14,10 +14,10 @@ Gem::Specification.new do |gem|
   gem.files = Dir['Rakefile', '{features,lib,spec}/**/*', 'README*', 'LICENSE*']
   gem.require_paths = %w[ lib ]
 
-  gem.add_dependency 'hashie', '~> 1.2.0'
+  gem.add_dependency 'hashie', '~> 2.0.5'
   gem.add_dependency 'faraday', '~> 0.8.1'
   gem.add_dependency 'multi_json', '~> 1.3'
-  gem.add_dependency 'faraday_middleware', '~> 0.8.1'
+  gem.add_dependency 'faraday_middleware', '~> 0.9.0'
   gem.add_dependency 'nokogiri', '~> 1.5.2'
   gem.add_dependency 'simple_oauth'
 
