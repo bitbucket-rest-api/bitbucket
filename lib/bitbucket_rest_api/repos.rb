@@ -8,7 +8,8 @@ module BitBucket
     autoload_all 'bitbucket_rest_api/repos',
                  :Changesets       => 'changesets',
                  :Keys          => 'keys',
-                 :Following      => 'following'
+                 :Following      => 'following',
+                 :Sources      => 'sources'
 
     DEFAULT_REPO_OPTIONS = {
         "website"         => "",
@@ -50,6 +51,11 @@ module BitBucket
     # Access to Repos::Watchin API
     def following
       @following ||= ApiFactory.new 'Repos::Following'
+    end
+
+    # Access to Repos::Commits API
+    def sources
+      @sources ||= ApiFactory.new 'Repos::Sources'
     end
 
     # List branches
