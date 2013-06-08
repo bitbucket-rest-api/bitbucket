@@ -7,7 +7,7 @@ module BitBucket
     DEFAULT_USER_OPTIONS = {
         "first_name"      => "",
         "last_name"       => "",
-        "avatar"          => "",
+        "avatar"          => ""
         # TODO: can this filed be modified?
         # "resource_uri"    => ""
     }.freeze
