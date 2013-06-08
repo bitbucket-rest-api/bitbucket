@@ -44,8 +44,7 @@ module BitBucket
     # Many of the resources on the users API provide a shortcut for getting
     # information about the currently authenticated user.
     def users(options = {})
-      raise "Unimplemented"
-      #@users ||= ApiFactory.new 'Users', options
+      @users ||= ApiFactory.new 'Users', options
     end
 
     def user(options = {})
