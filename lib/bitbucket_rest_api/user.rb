@@ -8,7 +8,8 @@ module BitBucket
         "first_name"      => "",
         "last_name"       => "",
         "avatar"          => "",
-        "resource_uri"    => ""
+        # TODO: can this filed be modified?
+        # "resource_uri"    => ""
     }.freeze
 
     # Creates new User API
