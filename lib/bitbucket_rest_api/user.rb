@@ -23,7 +23,7 @@ module BitBucket
     #
     # = Examples
     #  bitbucket = BitBucket.new
-    #  bitbucket.user.profile
+    #  bitbucket.user_api.profile
     #
     def profile
       get_request("/user")
@@ -41,7 +41,7 @@ module BitBucket
     # = Examples
     #
     #  bitbucket = BitBucket.new
-    #  bitbucket.user.update :first_name => 'first-name', :last_name => 'last-name'
+    #  bitbucket.user_api.update :first_name => 'first-name', :last_name => 'last-name'
     #
 
     def update( params={ })

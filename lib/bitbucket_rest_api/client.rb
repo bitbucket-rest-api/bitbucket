@@ -47,8 +47,8 @@ module BitBucket
       @users ||= ApiFactory.new 'Users', options
     end
 
-    def user(options = {})
-      @user ||= ApiFactory.new 'User', options
+    def user_api(options = {})
+      @user_api ||= ApiFactory.new 'User', options
     end
 
   end # Client
