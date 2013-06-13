@@ -93,6 +93,23 @@ module BitBucket
 
     alias :find :get
 
+    # Delete a single issue
+    #
+    # = Examples
+    #  bitbucket = BitBucket.new
+    #  bitbucket.issues.delete 'user-name', 'repo-name', 'issue-id'
+    #
+    def delete(user_name, repo_name, issue_id, params={ })
+      _update_user_repo_params(user_name, repo_name)
+      _validate_user_repo_params(user, repo) unless user? && repo?
+      _validate_presence_of issue_id
+
+      normalize! params
+      # _merge_mime_type(:issue, params)
+
+      delete_request("/repositories/#{user}/#{repo}/issues/#{issue_id}", params)
+    end
+
     # Create an issue
     #
     # = Inputs
