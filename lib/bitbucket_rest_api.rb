@@ -74,7 +74,10 @@ module BitBucket
 
                :Repos           => 'repos',
                #:Error           => 'error',
-               :Issues          => 'issues'
+               :Issues          => 'issues',
+               :User            => 'user',
+               :Users           => 'users'
+
   #:Teams           => 'teams',
   #:PullRequests    => 'pull_requests',
   #:Users           => 'users',
