@@ -29,10 +29,5 @@ module BitBucket
       response = get_request("/users/#{accountname}/events")
     end
     
-    # GET the keys of the current user
-    def keys
-      response = get_request("/users/#{self.login}/ssh-keys")
-    end
-
   end # Users::Account
 end # BitBucket

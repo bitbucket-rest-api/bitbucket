@@ -97,5 +97,10 @@ module BitBucket
       get_request("/user/repositories/dashboard")
     end
 
+    # GET the keys of the current user
+    def keys
+      get_request("/users/#{self.login}/ssh-keys")
+    end
+
   end # User
 end # BitBucket
