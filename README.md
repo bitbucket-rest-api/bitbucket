@@ -1,5 +1,7 @@
 # BitBucketAPI
 
+[![Gem Version](https://badge.fury.io/rb/bitbucket_rest_api.png)](http://badge.fury.io/rb/bitbucket_rest_api)
+
 [Wiki](https://github.com/vongrippen/bitbucket/wiki) | [RDocs](http://rubydoc.info/github/vongrippen/bitbucket/master/frames)
 
 A Ruby wrapper for the BitBucket REST API.
