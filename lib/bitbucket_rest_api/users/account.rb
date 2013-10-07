@@ -28,6 +28,21 @@ module BitBucket
     def events(accountname)
       response = get_request("/users/#{accountname}/events")
     end
-    
+
+    #GET the keys
+    def keys(accountname)
+      response = get_request("/users/#{accountname}/ssh-keys")
+    end
+
+    #POST a new key
+    # params should be in format {key: "", label:""}
+    def new_key(accountname, params)
+      response = post_request("/users/#{accountname}/ssh-keys/", params)
+    end
+
+    #DELETE a key
+    def delete_key(accountname, key_id)
+      response = delete_request("/users/#{accountname}/ssh-keys/#{key_id}")
+    end
   end # Users::Account
 end # BitBucket
