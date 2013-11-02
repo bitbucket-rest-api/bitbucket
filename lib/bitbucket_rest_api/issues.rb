@@ -19,6 +19,11 @@ module BitBucket
       priority
       status
       kind
+      limit
+      start
+      search
+      sort
+      reported_by
     ].freeze
 
     VALID_ISSUE_PARAM_VALUES = {
@@ -50,9 +55,19 @@ module BitBucket
     # List issues for a repository
     #
     # = Inputs
-    #  <tt>:filter</tt> - Optional - See https://confluence.atlassian.com/display/BITBUCKET/Issues#Issues-Filtering for building the filter string
-    #  <tt>:start</tt> - Optional - Issue offset, default 0
     #  <tt>:limit</tt> - Optional - Number of issues to retrieve, default 15
+    #  <tt>:start</tt> - Optional - Issue offset, default 0
+    #  <tt>:search</tt> - Optional - A string to search for
+    #  <tt>:sort</tt> - Optional - Sorts the output by any of the metadata fields
+    #  <tt>:title</tt> - Optional - Contains a filter operation to restrict the list of issues by the issue title
+    #  <tt>:content</tt> - Optional - Contains a filter operation to restrict the list of issues by the issue content
+    #  <tt>:version</tt> - Optional - Contains an is or ! ( is not) filter to restrict the list of issues by the version
+    #  <tt>:milestone</tt> - Optional - Contains an is or ! ( is not) filter to restrict the list of issues by the milestone
+    #  <tt>:component</tt> - Optional - Contains an is or ! ( is not) filter to restrict the list of issues by the component
+    #  <tt>:kind</tt> - Optional - Contains an is or ! ( is not) filter to restrict the list of issues by the issue kind
+    #  <tt>:status</tt> - Optional - Contains an is or ! ( is not) filter to restrict the list of issues by the issue status
+    #  <tt>:responsible</tt> - Optional - Contains an is or ! ( is not) filter to restrict the list of issues by the user responsible
+    #  <tt>:reported_by</tt> - Optional - Contains a filter operation to restrict the list of issues by the user that reported the issue
     #
     # = Examples
     #  bitbucket = BitBucket.new :user => 'user-name', :repo => 'repo-name'
