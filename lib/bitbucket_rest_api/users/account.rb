@@ -19,6 +19,11 @@ module BitBucket
       response = get_request("/users/#{accountname}/plan")
     end
 
+    # GET the emails
+    def emails(accountname)
+      response = get_request("/users/#{accountname}/emails")
+    end
+
     # GET the followers
     def followers(accountname)
       response = get_request("/users/#{accountname}/followers")
