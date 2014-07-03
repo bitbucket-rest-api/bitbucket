@@ -169,6 +169,19 @@ module BitBucket
 
     alias :find :get
 
+    # Delete a repository
+    #
+    # = Examples
+    #  @bitbucket = BitBucket.new
+    #  @bitbucket.repos.delete 'user-name', 'repo-name'
+    #
+    def delete(user_name, repo_name)
+      _update_user_repo_params(user_name, repo_name)
+      _validate_user_repo_params(user, repo) unless user? && repo?
+
+      delete_request("/repositories/#{user}/#{repo.downcase}")
+    end
+
     # List repositories for the authenticated user
     #
     # = Examples
