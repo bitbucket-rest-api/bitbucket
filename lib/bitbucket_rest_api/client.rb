@@ -51,9 +51,8 @@ module BitBucket
       @user_api ||= ApiFactory.new 'User', options
     end
 
-    def invitations( options = {} )
-      @invitations ||= ApiFactory.new 'Invitations', options
+    def invitations(options = {})
+      @invitations ||= ApiFactory.new "Invitations", options
     end
-
   end # Client
 end # BitBucket
