@@ -75,9 +75,9 @@ module BitBucket
     def stack(options={}, &block)
       @stack ||= begin
         if block_given?
-          Faraday::Builder.new(&block)
+          Faraday::RackBuilder.new(&block)
         else
-          Faraday::Builder.new(&default_middleware(options))
+          Faraday::RackBuilder.new(&default_middleware(options))
         end
       end
     end
