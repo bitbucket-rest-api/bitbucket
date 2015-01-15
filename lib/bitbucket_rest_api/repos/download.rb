@@ -2,6 +2,7 @@
 
 module BitBucket
   class Repos::Download < API
+     REQUIRED_KEY_PARAM_NAMES = %w[ commit_hash ].freeze
 def get(user_name, repo_name, params={})
       _update_user_repo_params(user_name, repo_name)
       _validate_user_repo_params(user, repo) unless user? && repo?
