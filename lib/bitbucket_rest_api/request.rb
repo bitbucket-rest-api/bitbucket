@@ -10,6 +10,7 @@ module BitBucket
     def get_request(path, params={}, options={})
       request(:get, path, params, options)
     end
+    
 
     def patch_request(path, params={}, options={})
       request(:patch, path, params, options)
