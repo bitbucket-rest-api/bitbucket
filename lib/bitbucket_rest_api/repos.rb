@@ -11,7 +11,9 @@ module BitBucket
                  :Services    => 'services',
                  :Following   => 'following',
                  :Sources     => 'sources',
-                 :Forks       => 'forks'
+                 :Forks       => 'forks',
+    :Commits =>'commits',
+    :Download=>'download'
 
     DEFAULT_REPO_OPTIONS = {
         "website"         => "",
@@ -66,6 +68,12 @@ module BitBucket
     end
     def forks
       @services ||= ApiFactory.new 'Repos::Forks'
+    end
+    def commits
+      @services ||=ApiFactory.new 'Repos::Commits'
+    end
+    def download
+      @services ||=ApiFactory.new "Repos::Download"
     end
     # List branches
     #
