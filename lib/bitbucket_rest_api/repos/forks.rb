@@ -26,6 +26,23 @@ module BitBucket
       scm
     ].freeze
 
+    # List forks of a repo
+    #
+    # = Examples
+    #  bitbucket = BitBucket.new
+    #  bitbucket.repos.forks.list 'user-name', 'repo-name'
+    #  bitbucket.repos.forks.list 'user-name', 'repo-name' { |fork| ... }
+    #
+    def list(user_name, repo_name, params={})
+      _update_user_repo_params(user_name, repo_name)
+      _validate_user_repo_params(user, repo) unless user? && repo?
+      normalize! params
+
+      response = get_request("/2.0/repositories/#{user}/#{repo.downcase}/forks/", params)
+      return response unless block_given?
+      response.each { |el| yield el }
+    end
+    alias :all :list
 
     # Create a fork
     #
