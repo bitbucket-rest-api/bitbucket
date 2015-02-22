@@ -28,7 +28,7 @@ module BitBucket
       normalize! params
       filter! %w[ limit start], params
 
-      response = get_request("/repositories/#{user}/#{repo.downcase}/changesets", params)
+      response = get_request("/1.0/repositories/#{user}/#{repo.downcase}/changesets", params)
       return response unless block_given?
       response.each { |el| yield el }
     end
@@ -46,7 +46,7 @@ module BitBucket
       _validate_presence_of sha
       normalize! params
 
-      get_request("/repositories/#{user}/#{repo.downcase}/changesets/#{sha}", params)
+      get_request("/1.0/repositories/#{user}/#{repo.downcase}/changesets/#{sha}", params)
     end
     alias :find :get
 

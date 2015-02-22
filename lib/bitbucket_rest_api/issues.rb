@@ -82,7 +82,7 @@ module BitBucket
       # _merge_mime_type(:issue, params)
       assert_valid_values(VALID_ISSUE_PARAM_VALUES, params)
 
-      response = get_request("/repositories/#{user}/#{repo.downcase}/issues", params)
+      response = get_request("/1.0/repositories/#{user}/#{repo.downcase}/issues", params)
       return response.issues unless block_given?
       response.issues.each { |el| yield el }
     end
@@ -103,7 +103,7 @@ module BitBucket
       normalize! params
       # _merge_mime_type(:issue, params)
 
-      get_request("/repositories/#{user}/#{repo.downcase}/issues/#{issue_id}", params)
+      get_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/#{issue_id}", params)
     end
 
     alias :find :get
@@ -122,7 +122,7 @@ module BitBucket
       normalize! params
       # _merge_mime_type(:issue, params)
 
-      delete_request("/repositories/#{user}/#{repo}/issues/#{issue_id}", params)
+      delete_request("/1.0/repositories/#{user}/#{repo}/issues/#{issue_id}", params)
     end
 
     # Create an issue
@@ -173,7 +173,7 @@ module BitBucket
       filter! VALID_ISSUE_PARAM_NAMES, params
       assert_required_keys(%w[ title ], params)
 
-      post_request("/repositories/#{user}/#{repo.downcase}/issues/", params)
+      post_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/", params)
     end
 
     # Edit an issue
@@ -223,7 +223,7 @@ module BitBucket
       # _merge_mime_type(:issue, params)
       filter! VALID_ISSUE_PARAM_NAMES, params
 
-      put_request("/repositories/#{user}/#{repo.downcase}/issues/#{issue_id}/", params)
+      put_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/#{issue_id}/", params)
     end
 
   end # Issues

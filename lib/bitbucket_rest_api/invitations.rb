@@ -8,7 +8,7 @@ module BitBucket
       _validate_presence_of emailaddress
       perm ||= "write"
 
-      post_request("/invitations/#{user}/#{repo.downcase}/#{emailaddress}",
+      post_request("/1.0/invitations/#{user}/#{repo.downcase}/#{emailaddress}",
                    permission: perm)
     end
   end

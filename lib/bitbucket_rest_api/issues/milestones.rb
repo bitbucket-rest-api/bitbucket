@@ -24,7 +24,7 @@ module BitBucket
 
       normalize! params
 
-      response = get_request("/repositories/#{user}/#{repo.downcase}/issues/milestones", params)
+      response = get_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/milestones", params)
       return response unless block_given?
       response.each { |el| yield el }
     end
@@ -42,7 +42,7 @@ module BitBucket
       _validate_presence_of milestone_id
       normalize! params
 
-      get_request("/repositories/#{user}/#{repo.downcase}/issues/milestones/#{milestone_id}", params)
+      get_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/milestones/#{milestone_id}", params)
     end
     alias :find :get
 
@@ -63,7 +63,7 @@ module BitBucket
       filter! VALID_MILESTONE_INPUTS, params
       assert_required_keys(%w[ name ], params)
 
-      post_request("/repositories/#{user}/#{repo.downcase}/issues/milestones", params)
+      post_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/milestones", params)
     end
 
     # Update a milestone
@@ -85,7 +85,7 @@ module BitBucket
       filter! VALID_MILESTONE_INPUTS, params
       assert_required_keys(%w[ name ], params)
 
-      put_request("/repositories/#{user}/#{repo.downcase}/issues/milestones/#{milestone_id}", params)
+      put_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/milestones/#{milestone_id}", params)
     end
 
     # Delete a milestone
@@ -100,7 +100,7 @@ module BitBucket
       _validate_presence_of milestone_id
       normalize! params
 
-      delete_request("/repositories/#{user}/#{repo.downcase}/issues/milestones/#{milestone_id}", params)
+      delete_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/milestones/#{milestone_id}", params)
     end
 
   end # Issues::Milestones
