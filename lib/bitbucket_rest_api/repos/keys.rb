@@ -17,7 +17,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
 
-      response = get_request("/repositories/#{user}/#{repo.downcase}/deploy-keys/", params)
+      response = get_request("/1.0/repositories/#{user}/#{repo.downcase}/deploy-keys/", params)
       return response unless block_given?
       response.each { |el| yield el }
     end
@@ -42,7 +42,7 @@ module BitBucket
       filter! VALID_KEY_PARAM_NAMES, params
       assert_required_keys(VALID_KEY_PARAM_NAMES, params)
 
-      post_request("/repositories/#{user}/#{repo.downcase}/deploy-keys/", params)
+      post_request("/1.0/repositories/#{user}/#{repo.downcase}/deploy-keys/", params)
     end
 
     # Edit a key
@@ -65,7 +65,7 @@ module BitBucket
       normalize! params
       filter! VALID_KEY_PARAM_NAMES, params
 
-      put_request("/repositories/#{user}/#{repo.downcase}/deploy-keys/#{key_id}", params)
+      put_request("/1.0/repositories/#{user}/#{repo.downcase}/deploy-keys/#{key_id}", params)
     end
 
     # Delete key
@@ -80,7 +80,7 @@ module BitBucket
       _validate_presence_of key_id
       normalize! params
 
-      delete_request("/repositories/#{user}/#{repo.downcase}/deploy-keys/#{key_id}", params)
+      delete_request("/1.0/repositories/#{user}/#{repo.downcase}/deploy-keys/#{key_id}", params)
     end
 
   end # Repos::Keys

@@ -17,7 +17,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
 
-      response = get_request("/repositories/#{user}/#{repo.downcase}/services", params)
+      response = get_request("/1.0/repositories/#{user}/#{repo.downcase}/services", params)
       return response unless block_given?
       response.each { |el| yield el }
     end
@@ -35,7 +35,7 @@ module BitBucket
       _validate_presence_of(service_id)
       normalize! params
 
-      get_request("/repositories/#{user}/#{repo.downcase}/services/#{service_id}", params)
+      get_request("/1.0/repositories/#{user}/#{repo.downcase}/services/#{service_id}", params)
     end
     alias :find :get
 
@@ -58,7 +58,7 @@ module BitBucket
       normalize! params
       assert_required_keys(REQUIRED_KEY_PARAM_NAMES, params)
 
-      post_request("/repositories/#{user}/#{repo.downcase}/services", params)
+      post_request("/1.0/repositories/#{user}/#{repo.downcase}/services", params)
     end
 
     # Edit a service
@@ -81,7 +81,7 @@ module BitBucket
 
       normalize! params
 
-      put_request("/repositories/#{user}/#{repo.downcase}/services/#{service_id}", params)
+      put_request("/1.0/repositories/#{user}/#{repo.downcase}/services/#{service_id}", params)
     end
 
     # Delete service
@@ -96,7 +96,7 @@ module BitBucket
       _validate_presence_of(service_id)
       normalize! params
 
-      delete_request("/repositories/#{user}/#{repo.downcase}/services/#{service_id}", params)
+      delete_request("/1.0/repositories/#{user}/#{repo.downcase}/services/#{service_id}", params)
     end
 
   end # Repos::Keys

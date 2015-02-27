@@ -45,7 +45,7 @@ module BitBucket
     DEFAULT_BASIC_AUTH         = nil
 
     # The endpoint used to connect to BitBucket if none is set, in the event that BitBucket is ever available on location
-    DEFAULT_ENDPOINT           = 'https://bitbucket.org/api/1.0'.freeze
+    DEFAULT_ENDPOINT           = 'https://bitbucket.org/api'.freeze
 
     # The value sent in the http header for 'User-Agent' if none is set
     DEFAULT_USER_AGENT         = "BitBucket Ruby Gem #{BitBucket::VERSION::STRING}".freeze

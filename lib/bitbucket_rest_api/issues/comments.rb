@@ -27,7 +27,7 @@ module BitBucket
       normalize! params
       # _merge_mime_type(:issue_comment, params)
 
-      response = get_request("/repositories/#{user}/#{repo.downcase}/issues/#{issue_id}/comments/", params)
+      response = get_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/#{issue_id}/comments/", params)
       return response unless block_given?
       response.each { |el| yield el }
     end
@@ -47,7 +47,7 @@ module BitBucket
       normalize! params
       # _merge_mime_type(:issue_comment, params)
 
-      get_request("/repositories/#{user}/#{repo.downcase}/issues/comments/#{comment_id}", params)
+      get_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/comments/#{comment_id}", params)
     end
     alias :find :get
 
@@ -71,7 +71,7 @@ module BitBucket
       filter! VALID_ISSUE_COMMENT_PARAM_NAME, params
       assert_required_keys(%w[ content ], params)
 
-      post_request("/repositories/#{user}/#{repo.downcase}/issues/#{issue_id}/comments/", params)
+      post_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/#{issue_id}/comments/", params)
     end
 
     # Edit a comment
@@ -94,7 +94,7 @@ module BitBucket
       filter! VALID_ISSUE_COMMENT_PARAM_NAME, params
       assert_required_keys(%w[ content ], params)
 
-      put_request("/repositories/#{user}/#{repo.downcase}/issues/comments/#{comment_id}")
+      put_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/comments/#{comment_id}")
     end
 
     # Delete a comment
@@ -111,7 +111,7 @@ module BitBucket
       normalize! params
       # _merge_mime_type(:issue_comment, params)
 
-      delete_request("/repositories/#{user}/#{repo.downcase}/issues/comments/#{comment_id}", params)
+      delete_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/comments/#{comment_id}", params)
     end
 
   end # Issues::Comments

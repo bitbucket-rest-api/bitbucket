@@ -26,7 +26,7 @@ module BitBucket
     #  bitbucket.user_api.profile
     #
     def profile
-      get_request("/user")
+      get_request("/1.0/user")
     end
 
 
@@ -48,14 +48,14 @@ module BitBucket
       normalize! params
       filter! DEFAULT_USER_OPTIONS, params
 
-      put_request("/user", DEFAULT_USER_OPTIONS.merge(params))
+      put_request("/1.0/user", DEFAULT_USER_OPTIONS.merge(params))
 
     end
 
 
     # GET a list of user privileges
     def privileges
-      get_request("/user/privileges")
+      get_request("/1.0/user/privileges")
     end
 
 
@@ -66,7 +66,7 @@ module BitBucket
     # if the repository is a fork of another repository.
     # An account always "follows" its own repositories.
     def follows
-      get_request("/user/follows")
+      get_request("/1.0/user/follows")
     end
 
 
@@ -75,7 +75,7 @@ module BitBucket
     # or has at least read access to.
     # Use this if you're looking for a full list of all of the repositories associated with a user.
     def repositories
-      get_request("/user/repositories")
+      get_request("/1.0/user/repositories")
     end
 
     alias :repos :repositories
@@ -86,7 +86,7 @@ module BitBucket
     # Gets a list of the repositories the account follows.
     # This is the same list that appears on the Following tab on your account dashboard.
     def overview
-      get_request("/user/repositories/overview")
+      get_request("/1.0/user/repositories/overview")
     end
 
 
@@ -94,7 +94,7 @@ module BitBucket
     # GET the list of repositories on the dashboard
     # Gets the repositories list from the account's dashboard.
     def dashboard
-      get_request("/user/repositories/dashboard")
+      get_request("/1.0/user/repositories/dashboard")
     end
 
   end # User

@@ -21,7 +21,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
 
-      response = get_request("/repositories/#{user}/#{repo.downcase}/issues/components", params)
+      response = get_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/components", params)
       return response unless block_given?
       response.each { |el| yield el }
     end
@@ -39,7 +39,7 @@ module BitBucket
       _validate_presence_of component_id
       normalize! params
 
-      get_request("/repositories/#{user}/#{repo.downcase}/issues/components/#{component_id}", params)
+      get_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/components/#{component_id}", params)
     end
     alias :find :get
 
@@ -60,7 +60,7 @@ module BitBucket
       filter! VALID_COMPONENT_INPUTS, params
       assert_required_keys(VALID_COMPONENT_INPUTS, params)
 
-      post_request("/repositories/#{user}/#{repo.downcase}/issues/components", params)
+      post_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/components", params)
     end
 
     # Update a component
@@ -82,7 +82,7 @@ module BitBucket
       filter! VALID_COMPONENT_INPUTS, params
       assert_required_keys(VALID_COMPONENT_INPUTS, params)
 
-      put_request("/repositories/#{user}/#{repo.downcase}/issues/components/#{component_id}", params)
+      put_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/components/#{component_id}", params)
     end
     alias :edit :update
 
@@ -99,7 +99,7 @@ module BitBucket
       _validate_presence_of component_id
       normalize! params
 
-      delete_request("/repositories/#{user}/#{repo.downcase}/labels/components/#{component_id}", params)
+      delete_request("/1.0/repositories/#{user}/#{repo.downcase}/labels/components/#{component_id}", params)
     end
 
   end # Issues::Components
