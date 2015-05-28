@@ -7,6 +7,7 @@ module BitBucket
         :adapter,
         :client_id,
         :client_secret,
+        :new_access_token,
         :oauth_token,
         :oauth_secret,
         :endpoint,
@@ -28,6 +29,9 @@ module BitBucket
 
     # By default, don't set an application secret
     DEFAULT_CLIENT_SECRET      = nil
+
+    # By default, don't set an access token
+    DEFAULT_ACCESS_TOKEN       = nil
 
     # By default, don't set a user oauth access token
     DEFAULT_OAUTH_TOKEN        = nil
@@ -83,6 +87,7 @@ module BitBucket
       self.adapter            = DEFAULT_ADAPTER
       self.client_id          = DEFAULT_CLIENT_ID
       self.client_secret      = DEFAULT_CLIENT_SECRET
+      self.new_access_token   = DEFAULT_ACCESS_TOKEN
       self.oauth_token        = DEFAULT_OAUTH_TOKEN
       self.oauth_secret       = DEFAULT_OAUTH_SECRET
       self.endpoint           = DEFAULT_ENDPOINT

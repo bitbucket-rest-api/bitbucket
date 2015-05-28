@@ -10,7 +10,7 @@ module BitBucket
     def get_request(path, params={}, options={})
       request(:get, path, params, options)
     end
-    
+
 
     def patch_request(path, params={}, options={})
       request(:patch, path, params, options)
@@ -40,6 +40,7 @@ module BitBucket
       path = (conn.path_prefix + path).gsub(/\/\//,'/') if conn.path_prefix != '/'
 
       response = conn.send(method) do |request|
+        request['Authorization'] = "Bearer #{new_access_token}" unless new_access_token.nil?
         case method.to_sym
         when *(METHODS - METHODS_WITH_BODIES)
           request.body = params.delete('data') if params.has_key?('data')
