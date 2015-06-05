@@ -14,7 +14,7 @@ module BitBucket
                  :Forks       => 'forks',
     :Commits =>'commits',
     :Download=>'download',
-                     :PullRequests    => 'pullrequests',
+                     :PullRequests    => 'pull_requests'
 
 
     DEFAULT_REPO_OPTIONS = {
@@ -79,8 +79,8 @@ module BitBucket
     end
 
     # Access to Repos::PullRequests API
-    def pullrequests
-      @pullrequests ||= ApiFactory.new 'Repos::PullRequests'
+    def pull_requests
+      @pull_requests ||= ApiFactory.new 'Repos::PullRequests'
     end
 
     # List branches
