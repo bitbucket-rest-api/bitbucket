@@ -12,10 +12,9 @@ module BitBucket
                  :Following   => 'following',
                  :Sources     => 'sources',
                  :Forks       => 'forks',
-    :Commits =>'commits',
-    :Download=>'download',
-                     :PullRequest    => 'pull_request'
-
+                 :Commits =>'commits',
+                 :Download=>'download',
+                 :PullRequest    => 'pull_request'
 
     DEFAULT_REPO_OPTIONS = {
         "website"         => "",
