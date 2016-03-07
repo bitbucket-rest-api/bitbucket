@@ -6,7 +6,6 @@ class Hash # :nodoc:
 
   def except!(*keys) # :nodoc:
     copy = self.dup
-    # FIXME delete! is not a method on Hash class
     keys.each { |key| copy.delete!(key) }
     copy
   end unless method_defined?(:except!)
