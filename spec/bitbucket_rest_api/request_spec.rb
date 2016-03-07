@@ -14,7 +14,9 @@ describe BitBucket::Request do
       before do
         (fake_api).any_instance.stubs(:connection).returns(faraday_connection)
         (fake_api).any_instance.stubs(:new_access_token).returns("12345")
+      end
 
+      it "supports get" do
         stub_request(:get, "https://bitbucket.org/api/1.0/repositories").
          with(:headers => {
           'Accept' => '*/*',
@@ -22,10 +24,54 @@ describe BitBucket::Request do
           'Authorization' => 'Bearer 12345',
           'User-Agent' => 'Faraday v0.9.2'
           })
+
+        fake_api.new.request(:get, '/1.0/repositories', {}, {})
       end
 
-      it "doesn't raise for a get" do
-        fake_api.new.request(:get, '/1.0/repositories', {}, {})
+      it "supports put" do
+        stub_request(:put, "https://bitbucket.org/api/1.0/repositories").
+         with(:headers => {
+          'Accept' => '*/*',
+          'Content-Length'=>'0',
+          'Authorization' => 'Bearer 12345',
+          'User-Agent' => 'Faraday v0.9.2'
+          })
+
+        fake_api.new.request(:put, '/1.0/repositories', {}, {})
+      end
+
+      it "supports patch" do
+        stub_request(:patch, "https://bitbucket.org/api/1.0/repositories").
+         with(:headers => {
+          'Accept' => '*/*',
+          'Content-Length'=>'0',
+          'Authorization' => 'Bearer 12345',
+          'User-Agent' => 'Faraday v0.9.2'
+          })
+
+        fake_api.new.request(:patch, '/1.0/repositories', {}, {})
+      end
+
+      it "supports delete" do
+        stub_request(:delete, "https://bitbucket.org/api/1.0/repositories").
+         with(:headers => {
+          'Accept' => '*/*',
+          'Authorization' => 'Bearer 12345',
+          'User-Agent' => 'Faraday v0.9.2'
+          })
+        fake_api.new.request(:delete, '/1.0/repositories', {}, {})
+      end
+
+      it "supports post" do
+        stub_request(:post, "https://bitbucket.org/api/1.0/repositories").
+         with(:headers => {
+          'Accept' => '*/*',
+          'Content-Length'=>'0',
+          'Authorization' => 'Bearer 12345',
+          'User-Agent' => 'Faraday v0.9.2'
+          })
+
+        fake_api.new.request(:post, '/1.0/repositories', {}, {})
       end
     end
   end
