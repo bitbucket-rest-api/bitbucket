@@ -3,10 +3,10 @@ require 'spec_helper'
 describe BitBucket::User do
   let(:options) do
     {
-      client_id:     'mX63DfWHZg5wu3naXc',
-      client_secret: 'xXqSdMCFD65YgLVPymSEAPdnvm6Ur3bQ',
-      oauth_token:   'cxLFBj3mJBS8Fp6hKw',
-      oauth_secret:  'k9nNg7EB5GGU3aCpFqe5YzxK7Qfz3dSf',
+      client_id:     'example_client_id',
+      client_secret: 'example_client_secret',
+      oauth_token:   'example_oauth_token',
+      oauth_secret:  'example_oauth_secret',
       adapter:       :net_http
     }
   end
