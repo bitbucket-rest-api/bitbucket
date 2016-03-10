@@ -11,5 +11,6 @@ log
 features/settings.yml
 *.gem
 .tags
+TAGS
 .tags_sorted_by_file
 coverage
