@@ -1,15 +1,15 @@
 require 'spec_helper'
 
 describe BitBucket::User do
-  let(:options) {
+  let(:options) do
     {
-      client_id: 'mX63DfWHZg5wu3naXc',
+      client_id:     'mX63DfWHZg5wu3naXc',
       client_secret: 'xXqSdMCFD65YgLVPymSEAPdnvm6Ur3bQ',
-      oauth_token: 'cxLFBj3mJBS8Fp6hKw',
-      oauth_secret: 'k9nNg7EB5GGU3aCpFqe5YzxK7Qfz3dSf',
-      adapter: :net_http
+      oauth_token:   'cxLFBj3mJBS8Fp6hKw',
+      oauth_secret:  'k9nNg7EB5GGU3aCpFqe5YzxK7Qfz3dSf',
+      adapter:       :net_http
     }
-  }
+  end
 
   before do
     @user = BitBucket::User.new(options)
@@ -30,10 +30,11 @@ describe BitBucket::User do
   end
 
   describe '#update' do
-    let(:params) {
+    let(:params) do
       { first_name: 'first-name', last_name: 'last-name', avatar: '' }
-    }
-    it 'sends the request to the right url', wip: true do
+    end
+
+    it 'sends the request to the right url' do
       expect(@user).to receive(:request).with(:put, '/1.0/user', params, {})
       @user.update(params)
     end

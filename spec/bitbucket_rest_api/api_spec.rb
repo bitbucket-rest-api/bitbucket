@@ -3,23 +3,23 @@ require 'spec_helper'
 describe BitBucket::API do
   let(:setup_options) { { user: 'test_user' } }
   let(:bitbucket_api) { described_class.new(setup_options) }
+  after do
+    [:user, :login, :password].each do |key|
+      bitbucket_api.send "clear_#{key}".to_sym
+    end
+  end
 
   describe '#new' do
     it 'passes options to bitbucket' do
-      mock_options = double
-      setup_options = {}
-      mock_options.expects(:merge).with(setup_options).returns(setup_options)
-      BitBucket.expects(:options).returns(mock_options)
-
       described_class.new(setup_options)
 
-      BitBucket.unstub(:options)
+      expect(bitbucket_api.user).to eq(setup_options[:user])
     end
 
     context 'valid options' do
       it 'sets valid options' do
         setup_options = {
-          login: 'johnwick',
+          login:    'johnwick',
           password: 'password'
         }
         bitbucket_api = described_class.new(setup_options)
@@ -41,7 +41,7 @@ describe BitBucket::API do
   end
 
   describe '#method_missing' do
-    let(:setup_options) { {user: 'test_user'} }
+    let(:setup_options) { { user: 'test_user' } }
 
     it 'responds to attribute query' do
       expect(bitbucket_api.user?).to eq(true)
