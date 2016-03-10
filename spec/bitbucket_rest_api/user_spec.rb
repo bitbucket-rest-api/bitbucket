@@ -20,13 +20,6 @@ describe BitBucket::User do
       expect(@user).to receive(:request).with(:get, '/1.0/user', {}, {})
       @user.profile
     end
-
-    it "retrieves user's profile info" do
-      VCR.use_cassette('user_profile') do
-        profile = @user.profile
-        expect(profile.repositories).to_not be_nil
-      end
-    end
   end
 
   describe '#update' do
@@ -37,6 +30,48 @@ describe BitBucket::User do
     it 'sends the request to the right url' do
       expect(@user).to receive(:request).with(:put, '/1.0/user', params, {})
       @user.update(params)
+    end
+  end
+
+  describe '#privileges' do
+    it 'sends the request to the right url' do
+      expect(@user).to receive(:request).with(:get, '/1.0/user/privileges', {}, {})
+      @user.privileges
+    end
+  end
+
+  describe '#follows' do
+    it 'sends the request to the right url' do
+      expect(@user).to receive(:request).with(:get, '/1.0/user/follows', {}, {})
+      @user.follows
+    end
+  end
+
+  describe '#repositories' do
+    it 'sends the request to the right url' do
+      expect(@user).to receive(:request).with(:get, '/1.0/user/repositories', {}, {})
+      @user.repositories
+    end
+  end
+
+  describe '#repos' do
+    it 'sends the request to the right url' do
+      expect(@user).to receive(:request).with(:get, '/1.0/user/repositories', {}, {})
+      @user.repos
+    end
+  end
+
+  describe '#overview' do
+    it 'sends the request to the right url' do
+      expect(@user).to receive(:request).with(:get, '/1.0/user/repositories/overview', {}, {})
+      @user.overview
+    end
+  end
+
+  describe '#dashboard' do
+    it 'sends the request to the right url' do
+      expect(@user).to receive(:request).with(:get, '/1.0/user/repositories/dashboard', {}, {})
+      @user.dashboard
     end
   end
 end
