@@ -16,7 +16,7 @@ describe BitBucket::API do
       BitBucket.unstub(:options)
     end
 
-    context 'valid options', wip: true do
+    context 'valid options' do
       it 'sets valid options' do
         setup_options = {
           login: 'johnwick',
