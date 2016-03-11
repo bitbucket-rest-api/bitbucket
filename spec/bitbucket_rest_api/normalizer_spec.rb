@@ -27,4 +27,4 @@ describe BitBucket::Normalizer, '#normalize!' do
       actual.should be_eql expected
     end
   end
-end # Github::Normalizer
+end # BitBucket::Normalizer
