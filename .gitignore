@@ -10,4 +10,7 @@ log
 *.sqlite3
 features/settings.yml
 *.gem
-
+.tags
+TAGS
+.tags_sorted_by_file
+coverage
