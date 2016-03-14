@@ -74,7 +74,7 @@ describe BitBucket::Repos do
     end
   end
 
-  describe '.tags', wip: true do
+  describe '.tags' do
     before do
       expect(repo).to receive(:request).with(
         :get,
@@ -84,7 +84,7 @@ describe BitBucket::Repos do
       )
     end
 
-    it 'should send a GET request for the authenticated users repos' do
+    it 'should send a GET request for the tags belonging to the given repo' do
       repo.tags('mock_username', 'mock_repo')
     end
   end
