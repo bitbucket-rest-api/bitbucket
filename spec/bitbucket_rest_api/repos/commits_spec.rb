@@ -3,7 +3,7 @@ require 'spec_helper'
 describe BitBucket::Repos::Commits do
   let(:commits) { BitBucket::Repos::Commits.new }
 
-  describe '.get' do
+  describe '.list' do
     before do
       expect(commits).to receive(:request).with(
         :get,
@@ -14,7 +14,7 @@ describe BitBucket::Repos::Commits do
     end
 
     it 'should send a GET request for the commits belonging to the given repo' do
-      commits.get('mock_username', 'mock_repo')
+      commits.list('mock_username', 'mock_repo')
     end
   end
 end
