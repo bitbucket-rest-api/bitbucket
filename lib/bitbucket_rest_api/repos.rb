@@ -14,6 +14,7 @@ module BitBucket
                  :Forks       => 'forks',
                  :Commits =>'commits',
                  :Download=>'download',
+                 :Webhooks => 'webhooks',
                  :PullRequest    => 'pull_request'
 
     DEFAULT_REPO_OPTIONS = {
