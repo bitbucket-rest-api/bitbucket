@@ -58,7 +58,7 @@ describe BitBucket::Issues::Comments do
       )
     end
 
-    it 'should send a PUT request for the given comment', wip: true do
+    it 'should send a PUT request for the given comment' do
       comments.edit('mock_username', 'mock_repo', 'mock_comment_id', 'content' => 'new_mock_comment')
     end
   end
