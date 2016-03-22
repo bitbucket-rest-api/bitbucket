@@ -28,7 +28,7 @@ module BitBucket
       request(:delete, path, params, options)
     end
 
-    def request(method, path, params, options)
+    def request(method, path, params, options={})
       if !METHODS.include?(method)
         raise ArgumentError, "unkown http method: #{method}"
       end
