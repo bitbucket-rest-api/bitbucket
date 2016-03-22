@@ -58,8 +58,24 @@ describe BitBucket::Issues do
       )
     end
 
-    it 'should send a DELETE request for the given repo' do
+    it 'should send a DELETE request for the given issue' do
       issue.delete('mock_username', 'mock_repo', 1)
+    end
+  end
+
+  describe '.list_repo' do
+    require 'ostruct'
+    before do
+      expect(issue).to receive(:request).with(
+        :get,
+        '/1.0/repositories/mock_username/mock_repo/issues',
+        {},
+        {}
+      ).and_return(OpenStruct.new(:issues => []))
+    end
+
+    it 'should send a GET request for the issues for that repo' do
+      issue.list_repo('mock_username', 'mock_repo')
     end
   end
 end
