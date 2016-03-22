@@ -27,8 +27,23 @@ describe BitBucket::Repos::PullRequest do
       )
     end
 
-    it 'makes a GET request for all participants belongingto the repo' do
+    it 'makes a GET request for all participants belonging to the repo' do
       subject.participants('mock_username', 'mock_repo', 'mock_pull_request_id')
+    end
+  end
+
+  describe '#get' do
+    before do
+      expect(subject).to receive(:request).with(
+        :get,
+        "/2.0/repositories/mock_username/mock_repo/pullrequests/mock_pull_request_id",
+        {},
+        {}
+      )
+    end
+
+    it 'makes a GET request for the pull request belonging to the repo' do
+      subject.get('mock_username', 'mock_repo', 'mock_pull_request_id')
     end
   end
 

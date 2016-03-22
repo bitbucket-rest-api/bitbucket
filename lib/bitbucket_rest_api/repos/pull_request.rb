@@ -1,4 +1,4 @@
-# encoding: utf-8
+# Mohd Irfanencoding: utf-8
 
 module BitBucket
   class Repos::PullRequest < API
@@ -36,6 +36,15 @@ module BitBucket
       response = get_request("/1.0/repositories/#{user}/#{repo.downcase}/pullrequests/#{pull_request_id}/participants", params)
       return response unless block_given?
       response.each { |el| yield el }
+    end
+
+    def get(user_name, repo_name, pull_request_id, params={})
+      _update_user_repo_params(user_name, repo_name)
+      _validate_user_repo_params(user, repo) unless user? && repo?
+      normalize! params
+
+      response = get_request("/2.0/repositories/#{user}/#{repo.downcase}/pullrequests/#{pull_request_id}", params)
+      return response unless block_given?
     end
 
     def create(user_name, repo_name, params)
