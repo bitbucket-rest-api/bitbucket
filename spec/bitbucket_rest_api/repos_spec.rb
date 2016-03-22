@@ -11,6 +11,21 @@ describe BitBucket::Repos do
     repo.clear_user
   end
 
+  describe '.create' do
+    before do
+      expect(repo).to receive(:request).with(
+        :post,
+        '/1.0/repositories/',
+        BitBucket::Repos::DEFAULT_REPO_OPTIONS.merge({ 'owner' => 'mock_owner', 'name' => 'mock_repo' }),
+        {}
+      )
+    end
+
+    it 'should send a POST request to create the repo' do
+      repo.create({ 'owner' => 'mock_owner', 'name' => 'mock_repo' })
+    end
+  end
+
   # TODO: fix case where block_given? returns true
   describe '.branches' do
     before do
