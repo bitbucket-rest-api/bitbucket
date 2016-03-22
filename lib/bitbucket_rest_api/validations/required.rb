@@ -11,7 +11,6 @@ module BitBucket
       #
       def assert_required_keys(required, provided)
         result = required.all? do |key|
-          binding.pry
           provided.has_deep_key? key
         end
         if !result
