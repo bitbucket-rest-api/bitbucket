@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'ostruct'
 
 describe BitBucket::Issues do
   let(:issue) { BitBucket::Issues.new }
@@ -64,7 +65,6 @@ describe BitBucket::Issues do
   end
 
   describe '.list_repo' do
-    require 'ostruct'
     before do
       expect(issue).to receive(:request).with(
         :get,
