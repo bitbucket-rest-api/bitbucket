@@ -30,26 +30,28 @@ describe BitBucket::Request do
 
       it "supports put" do
         stub_request(:put, "https://bitbucket.org/api/1.0/repositories").
-         with(:headers => {
-          'Accept' => '*/*',
-          'Content-Length'=>'0',
-          'Authorization' => 'Bearer 12345',
-          'User-Agent' => 'Faraday v0.9.2'
+         with(:body => { "data" => "payload" },
+          :headers => {
+            'Accept' => '*/*',
+            'Content-Type'=>'application/x-www-form-urlencoded',
+            'Authorization' => 'Bearer 12345',
+            'User-Agent' => 'Faraday v0.9.2'
           })
 
-        fake_api.new.request(:put, '/1.0/repositories', {}, {})
+        fake_api.new.request(:put, '/1.0/repositories', { :data => "payload" }, {})
       end
 
       it "supports patch" do
         stub_request(:patch, "https://bitbucket.org/api/1.0/repositories").
-         with(:headers => {
-          'Accept' => '*/*',
-          'Content-Length'=>'0',
-          'Authorization' => 'Bearer 12345',
-          'User-Agent' => 'Faraday v0.9.2'
+         with(:body => { "data" => "payload" },
+          :headers => {
+            'Accept' => '*/*',
+            'Content-Type'=>'application/x-www-form-urlencoded',
+            'Authorization' => 'Bearer 12345',
+            'User-Agent' => 'Faraday v0.9.2'
           })
 
-        fake_api.new.request(:patch, '/1.0/repositories', {}, {})
+        fake_api.new.request(:patch, '/1.0/repositories', { :data => "payload" }, {})
       end
 
       it "supports delete" do
@@ -64,14 +66,15 @@ describe BitBucket::Request do
 
       it "supports post" do
         stub_request(:post, "https://bitbucket.org/api/1.0/repositories").
-         with(:headers => {
-          'Accept' => '*/*',
-          'Content-Length'=>'0',
-          'Authorization' => 'Bearer 12345',
-          'User-Agent' => 'Faraday v0.9.2'
+         with(:body => { "data" => "payload" },
+          :headers => {
+            'Accept' => '*/*',
+            'Content-Type'=>'application/x-www-form-urlencoded',
+            'Authorization' => 'Bearer 12345',
+            'User-Agent' => 'Faraday v0.9.2'
           })
 
-        fake_api.new.request(:post, '/1.0/repositories', {}, {})
+        fake_api.new.request(:post, '/1.0/repositories', { :data => "payload" }, {})
       end
     end
   end
