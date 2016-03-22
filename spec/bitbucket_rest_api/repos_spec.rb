@@ -26,6 +26,21 @@ describe BitBucket::Repos do
     end
   end
 
+  describe '.delete' do
+    before do
+      expect(repo).to receive(:request).with(
+        :delete,
+        '/1.0/repositories/mock_username/mock_repo',
+        {},
+        {}
+      )
+    end
+
+    it 'should send a DELETE request for the given repo' do
+      repo.delete('mock_username', 'mock_repo')
+    end
+  end
+
   # TODO: fix case where block_given? returns true
   describe '.branches' do
     before do
