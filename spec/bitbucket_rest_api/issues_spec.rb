@@ -32,4 +32,34 @@ describe BitBucket::Issues do
       issue.edit('mock_username', 'mock_repo', 1, { 'title' => 'new_title' })
     end
   end
+
+  describe '.get' do
+    before do
+      expect(issue).to receive(:request).with(
+        :get,
+        '/1.0/repositories/mock_username/mock_repo/issues/1',
+        {},
+        {}
+      )
+    end
+
+    it 'should send a GET request for the given issue' do
+      issue.get('mock_username', 'mock_repo', 1, {})
+    end
+  end
+
+  describe '.delete' do
+    before do
+      expect(issue).to receive(:request).with(
+        :delete,
+        '/1.0/repositories/mock_username/mock_repo/issues/1',
+        {},
+        {}
+      )
+    end
+
+    it 'should send a DELETE request for the given repo' do
+      issue.delete('mock_username', 'mock_repo', 1)
+    end
+  end
 end
