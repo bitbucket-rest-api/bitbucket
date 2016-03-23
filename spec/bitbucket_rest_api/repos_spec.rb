@@ -118,4 +118,14 @@ describe BitBucket::Repos do
       repo.tags('mock_username', 'mock_repo')
     end
   end
+
+  describe "getter methods" do
+    it "returns an object of the correct class" do
+      expect(repo.changesets).to be_a BitBucket::Repos::Changesets
+      expect(repo.keys).to be_a BitBucket::Repos::Keys
+      expect(repo.following).to be_a BitBucket::Repos::Following
+      expect(repo.commits).to be_a BitBucket::Repos::Commits
+      expect(repo.pull_request).to be_a BitBucket::Repos::PullRequest
+    end
+  end
 end
