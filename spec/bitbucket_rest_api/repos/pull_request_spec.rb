@@ -49,65 +49,69 @@ describe BitBucket::Repos::PullRequest do
 
   describe '#create' do
     before do
-      # expect(subject).to receive(:request).with(
-      #   :post,
-      #   '/2.0/repositories/mock_username/mock_repo/pullrequests',
-      #   {
-      #     title: "mock_pr_title",
-      #     description: "mock_pull_request_description",
-      #     source: {
-      #       branch: {
-      #         name: "mock_source_branch_name"
-      #       },
-      #       repository: {
-      #         full_name: "mock_owner/mock_repo"
-      #       }
-      #     },
-      #     destination: {
-      #       branch: {
-      #         name: "mock_destination_branch_name"
-      #       },
-      #       commit: {
-      #         hash: "mock_uuid"
-      #       }
-      #     },
-      #     close_source_branch: true
-      #   },
-      #   {}
-      # )
+      @params = {
+        title: "mock_pr_title",
+        description: "mock_pull_request_description",
+        source: {
+          branch: {
+            name: "mock_source_branch_name"
+          },
+          repository: {
+            full_name: "mock_owner/mock_repo"
+          }
+        },
+        destination: {
+          branch: {
+            name: "mock_destination_branch_name"
+          },
+          commit: {
+            hash: "mock_uuid"
+          }
+        },
+        close_source_branch: true
+      }
+
+      expect(subject).to receive(:request).with(
+        :post,
+        '/2.0/repositories/mock_username/mock_repo/pullrequests',
+        @params,
+        {}
+      )
     end
 
-    it 'validates presence of required params' do
+    it 'makes a POST request to create a new pull request', wip: true do
+      subject.create('mock_username', 'mock_repo', @params)
+    end
+
+    xit 'validates presence of required params' do
       # expect do
-        subject.create(
-          'mock_username',
-          'mock_repo',
-          {
-            title: "",
-            description: "mock_pull_request_description",
-            source: {
-              branch: {
-                name: "mock_source_branch_name"
-              },
-              repository: {
-                full_name: "mock_owner/mock_repo"
-              }
+      subject.create(
+        'mock_username',
+        'mock_repo',
+        {
+          title: "",
+          description: "mock_pull_request_description",
+          source: {
+            branch: {
+              name: "mock_source_branch_name"
             },
-            destination: {
-              branch: {
-                name: "mock_destination_branch_name"
-              },
-              commit: {
-                hash: "mock_uuid"
-              }
+            repository: {
+              full_name: "mock_owner/mock_repo"
+            }
+          },
+          destination: {
+            branch: {
+              name: "mock_destination_branch_name"
             },
-            close_source_branch: true
-          }
-        )
+            commit: {
+              hash: "mock_uuid"
+            }
+          },
+          close_source_branch: true
+        }
+      )
       # end.to(raise_error())
     end
 
-    it 'makes a POST request to create a new pull request' do
-    end
   end
 end

@@ -52,6 +52,9 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
       assert_required_keys(%w[title name], params)
+
+      response = post_request("/2.0/repositories/#{user}/#{repo.downcase}/pullrequests", params)
+      return response unless block_given?
     end
   end # Repos::Keys
 end # BitBucket
