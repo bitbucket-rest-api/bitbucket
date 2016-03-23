@@ -35,15 +35,15 @@ describe BitBucket::Repos::Keys do
   describe '.edit' do
     before do
       expect(deploy_keys).to receive(:request).with(
-         :post,
-         '/1.0/repositories/mock_username/mock_repo/deploy-keys/',
+         :put,
+         '/1.0/repositories/mock_username/mock_repo/deploy-keys/1',
          { 'key' => 'mock_ssh_key', 'label' => 'mock_label' },
          {}
        )
     end
 
     it 'should make a PUT request for the deploy keys belonging to the given repo' do
-      deploy_keys.create('mock_username', 'mock_repo', { key: 'mock_ssh_key', label: 'mock_label' })
+      deploy_keys.edit('mock_username', 'mock_repo', 1, { key: 'mock_ssh_key', label: 'mock_label' })
     end
   end
 
