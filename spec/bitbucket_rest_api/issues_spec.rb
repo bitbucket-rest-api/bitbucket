@@ -78,4 +78,12 @@ describe BitBucket::Issues do
       issue.list_repo('mock_username', 'mock_repo')
     end
   end
+
+  describe "getter methods" do
+    it "returns an object of the correct class" do
+      expect(issue.comments).to be_a BitBucket::Issues::Comments
+      expect(issue.components).to be_a BitBucket::Issues::Components
+      expect(issue.milestones).to be_a BitBucket::Issues::Milestones
+    end
+  end
 end
