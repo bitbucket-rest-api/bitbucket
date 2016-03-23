@@ -6,14 +6,14 @@ describe BitBucket::Repos::PullRequest do
     before do
       expect(subject).to receive(:request).with(
         :get,
-        '/2.0/repositories/mock_username/mock_repo/pullrequests',
+        '/2.0/repositories/mock_user/mock_repo/pullrequests',
         {},
         {}
       )
     end
 
     it 'makes a GET request for all pull requests belonging to the repo' do
-      subject.list('mock_username', 'mock_repo')
+      subject.list('mock_user', 'mock_repo')
     end
   end
 
@@ -21,14 +21,14 @@ describe BitBucket::Repos::PullRequest do
     before do
       expect(subject).to receive(:request).with(
         :get,
-        "/1.0/repositories/mock_username/mock_repo/pullrequests/mock_pull_request_id/participants",
+        "/1.0/repositories/mock_user/mock_repo/pullrequests/mock_pull_request_id/participants",
         {},
         {}
       )
     end
 
     it 'makes a GET request for all participants belonging to the repo' do
-      subject.participants('mock_username', 'mock_repo', 'mock_pull_request_id')
+      subject.participants('mock_user', 'mock_repo', 'mock_pull_request_id')
     end
   end
 
@@ -36,14 +36,13 @@ describe BitBucket::Repos::PullRequest do
     before do
       expect(subject).to receive(:request).with(
         :get,
-        "/2.0/repositories/mock_username/mock_repo/pullrequests/mock_pull_request_id",
-        {},
+        "/2.0/repositories/mock_user/mock_repo/pullrequests/mock_pull_request_id",
         {}
       )
     end
 
     it 'makes a GET request for the pull request belonging to the repo' do
-      subject.get('mock_username', 'mock_repo', 'mock_pull_request_id')
+      subject.get('mock_user', 'mock_repo', 'mock_pull_request_id')
     end
   end
 
@@ -73,20 +72,19 @@ describe BitBucket::Repos::PullRequest do
 
       expect(subject).to receive(:request).with(
         :post,
-        '/2.0/repositories/mock_username/mock_repo/pullrequests',
-        @params,
-        {}
+        '/2.0/repositories/mock_user/mock_repo/pullrequests',
+        @params
       )
     end
 
-    it 'makes a POST request to create a new pull request', wip: true do
-      subject.create('mock_username', 'mock_repo', @params)
+    it 'makes a POST request to create a new pull request' do
+      subject.create('mock_user', 'mock_repo', @params)
     end
 
     xit 'validates presence of required params' do
       # expect do
       subject.create(
-        'mock_username',
+        'mock_user',
         'mock_repo',
         {
           title: "",
@@ -112,6 +110,19 @@ describe BitBucket::Repos::PullRequest do
       )
       # end.to(raise_error())
     end
+  end
 
+  describe '.put' do
+    before do
+      expect(subject).to receive(:request).with(
+        :put,
+        '/2.0/repositories/mock_user/mock_repo/pullrequests/mock_id',
+        {}
+      )
+    end
+
+    it 'makes a PUT request for the given pull request', wip: true do
+      subject.update('mock_user', 'mock_repo', 'mock_id')
+    end
   end
 end

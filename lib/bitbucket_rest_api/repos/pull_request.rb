@@ -43,17 +43,25 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
 
-      response = get_request("/2.0/repositories/#{user}/#{repo.downcase}/pullrequests/#{pull_request_id}", params)
+      response = request(:get, "/2.0/repositories/#{user}/#{repo.downcase}/pullrequests/#{pull_request_id}", params)
       return response unless block_given?
     end
 
-    def create(user_name, repo_name, params)
+    def create(user_name, repo_name, params={})
       _update_user_repo_params(user_name, repo_name)
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
-      assert_required_keys(%w[title name], params)
 
-      response = post_request("/2.0/repositories/#{user}/#{repo.downcase}/pullrequests", params)
+      response = request(:post, "/2.0/repositories/#{user}/#{repo.downcase}/pullrequests", params)
+      return response unless block_given?
+    end
+
+    def update(user_name, repo_name, pull_request_id, params={})
+      _update_user_repo_params(user_name, repo_name)
+      _validate_user_repo_params(user, repo) unless user? && repo?
+      normalize! params
+
+      response = request(:put, "/2.0/repositories/#{user}/#{repo.downcase}/pullrequests/#{pull_request_id}", params)
       return response unless block_given?
     end
   end # Repos::Keys
