@@ -121,8 +121,152 @@ describe BitBucket::Repos::PullRequest do
       )
     end
 
-    it 'makes a PUT request for the given pull request', wip: true do
+    it 'makes a PUT request for the given pull request' do
       subject.update('mock_user', 'mock_repo', 'mock_id')
+    end
+  end
+
+  describe '.get_commits' do
+    before do
+      expect(subject).to receive(:request).with(
+        :get,
+        '/2.0/repositories/mock_user/mock_repo/pullrequests/mock_id/commits',
+        {}
+      )
+    end
+
+    it 'makes a GET request for the commits' do
+      subject.get_commits('mock_user', 'mock_repo', 'mock_id')
+    end
+  end
+
+  describe '.get_commits' do
+    before do
+      expect(subject).to receive(:request).with(
+        :post,
+        '/2.0/repositories/mock_user/mock_repo/pullrequests/mock_id/approve',
+        {}
+      )
+    end
+
+    it '', wip: true do
+      subject.approve('mock_user', 'mock_repo', 'mock_id')
+    end
+  end
+
+  describe '.delete_approval' do
+    before do
+      expect(subject).to receive(:request).with(
+        :delete,
+        '/2.0/repositories/mock_user/mock_repo/pullrequests/mock_id/approve',
+        {}
+      )
+    end
+
+    it '', wip: true do
+      subject.delete_approval('mock_user', 'mock_repo', 'mock_id')
+    end
+  end
+
+
+  describe '.diff' do
+    before do
+      expect(subject).to receive(:request).with(
+        :get,
+        '/2.0/repositories/mock_user/mock_repo/pullrequests/mock_id/diff',
+        {}
+      )
+    end
+
+    it 'makes a GET request for the diff of the pull request', wip: true do
+      subject.diff('mock_user', 'mock_repo', 'mock_id')
+    end
+  end
+
+  describe '.all_activity' do
+    before do
+      expect(subject).to receive(:request).with(
+        :get,
+        '/2.0/repositories/mock_user/mock_repo/pullrequests/activity',
+        {}
+      )
+    end
+
+    it 'makes a GET request', wip: true do
+      subject.all_activity('mock_user', 'mock_repo')
+    end
+  end
+
+
+  describe '.activity' do
+    before do
+      expect(subject).to receive(:request).with(
+        :get,
+        '/2.0/repositories/mock_user/mock_repo/pullrequests/mock_id/activity',
+        {}
+      )
+    end
+
+    it 'makes a GET request' do
+      subject.activity('mock_user', 'mock_repo', 'mock_id')
+    end
+  end
+
+
+  describe '.accept_and_merge' do
+    before do
+      expect(subject).to receive(:request).with(
+        :post,
+        '/2.0/repositories/mock_user/mock_repo/pullrequests/mock_id/merge',
+        {}
+      )
+    end
+
+    it 'makes a POST request' do
+      subject.merge('mock_user', 'mock_repo', 'mock_id')
+    end
+  end
+
+  describe '.decline' do
+    before do
+      expect(subject).to receive(:request).with(
+        :post,
+        '/2.0/repositories/mock_user/mock_repo/pullrequests/mock_id/decline',
+        {}
+      )
+    end
+
+    it '', wip: true do
+      subject.decline('mock_user', 'mock_repo', 'mock_id')
+    end
+  end
+
+
+  describe '.comments' do
+    before do
+      expect(subject).to receive(:request).with(
+        :get,
+        '/2.0/repositories/mock_user/mock_repo/pullrequests/mock_id/comments',
+        {}
+      )
+    end
+
+    it 'makes a GET request' do
+      subject.comments('mock_user', 'mock_repo', 'mock_id')
+    end
+  end
+
+  describe '.comment' do
+    before do
+      expect(subject).to receive(:request).with(
+        :get,
+        '/2.0/repositories/mock_user/mock_repo/pullrequests/mock_id/comments/comment_id',
+        {}
+      )
+    end
+
+    it 'makes a GET request' do
+      subject.comment('mock_user', 'mock_repo', 'mock_id', 'comment_id')
     end
   end
 end
