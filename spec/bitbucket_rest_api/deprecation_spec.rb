@@ -12,19 +12,19 @@ describe BitBucket do
     end
 
     it 'tracks messages' do
-      BitBucket.should_receive(:warn).once()
+      expect(BitBucket).to receive(:warn).once()
       BitBucket.deprecate(method)
       BitBucket.deprecate(method)
     end
 
     it 'prints the message through Kernel' do
-      BitBucket.should_receive(:warn).once()
+      expect(BitBucket).to receive(:warn).once()
       BitBucket.deprecate method
     end
   end
 
   it 'prints the message through Kernel' do
-    BitBucket.should_receive(:warn)
+    expect(BitBucket).to receive(:warn)
     BitBucket.warn_deprecation method
   end
 end
