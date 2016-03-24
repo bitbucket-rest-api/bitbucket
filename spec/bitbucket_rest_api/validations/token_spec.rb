@@ -5,12 +5,12 @@ describe BitBucket::Validations::Token do
 
   describe ".validates_token_for" do
     it 'returns false if authentication token is not required' do
-      token.validates_token_for(:get, '/anotherpath').should be false
+      expect(token.validates_token_for(:get, '/anotherpath')).to be false
     end
 
     it 'returns true if authentication token is required' do
-      token.validates_token_for(:get, '/user').should be true
-      token.validates_token_for(:get, '/repos/a/b/comments').should be true
+      expect(token.validates_token_for(:get, '/user')).to be true
+      expect(token.validates_token_for(:get, '/repos/a/b/comments')).to be true
     end
   end
 end
