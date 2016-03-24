@@ -4,11 +4,8 @@ class Array # :nodoc:
     self.dup.except!(*keys)
   end unless method_defined?(:except)
 
-  # TODO except! should moodify self not a copy
   def except!(*items) # :nodoc:
-    copy = self.dup
-    copy.reject! { |item| items.include? item }
-    copy
+    self.reject! { |item| items.include? item }
   end unless method_defined?(:except!)
 
   def extract_options!
