@@ -71,11 +71,12 @@ describe BitBucket::Issues do
         '/1.0/repositories/mock_username/mock_repo/issues',
         {},
         {}
-      ).and_return(OpenStruct.new(:issues => []))
+      ).and_return(OpenStruct.new(:issues => [])).twice
     end
 
     it 'should send a GET request for the issues for that repo' do
       issue.list_repo('mock_username', 'mock_repo')
+      issue.list_repo('mock_username', 'mock_repo') { |issue| issue }
     end
   end
 
