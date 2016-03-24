@@ -149,7 +149,7 @@ describe BitBucket::Repos::PullRequest do
       )
     end
 
-    it '', wip: true do
+    it 'makes a POST request' do
       subject.approve('mock_user', 'mock_repo', 'mock_id')
     end
   end
@@ -163,7 +163,7 @@ describe BitBucket::Repos::PullRequest do
       )
     end
 
-    it '', wip: true do
+    it 'makes a DELTE request' do
       subject.delete_approval('mock_user', 'mock_repo', 'mock_id')
     end
   end
@@ -178,7 +178,7 @@ describe BitBucket::Repos::PullRequest do
       )
     end
 
-    it 'makes a GET request for the diff of the pull request', wip: true do
+    it 'makes a GET request for the diff of the pull request' do
       subject.diff('mock_user', 'mock_repo', 'mock_id')
     end
   end
@@ -192,7 +192,7 @@ describe BitBucket::Repos::PullRequest do
       )
     end
 
-    it 'makes a GET request', wip: true do
+    it 'makes a GET request' do
       subject.all_activity('mock_user', 'mock_repo')
     end
   end
@@ -236,7 +236,7 @@ describe BitBucket::Repos::PullRequest do
       )
     end
 
-    it '', wip: true do
+    it 'makes a POST request' do
       subject.decline('mock_user', 'mock_repo', 'mock_id')
     end
   end
