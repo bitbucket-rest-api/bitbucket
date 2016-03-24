@@ -10,6 +10,7 @@ describe BitBucket::Validations::Token do
 
     it 'returns true if authentication token is required' do
       token.validates_token_for(:get, '/user').should be true
+      token.validates_token_for(:get, '/repos/a/b/comments').should be true
     end
   end
 end
