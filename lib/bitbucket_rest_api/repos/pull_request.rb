@@ -1,4 +1,4 @@
-# Mohd Irfanencoding: utf-8
+# encoding: utf-8
 
 module BitBucket
   class Repos::PullRequest < API
