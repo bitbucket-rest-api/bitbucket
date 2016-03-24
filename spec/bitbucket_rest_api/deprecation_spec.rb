@@ -4,7 +4,7 @@ describe BitBucket do
   let(:method) { 'create_repos'}
   let(:alt_method) { 'repos.create'}
 
-  it { described_class.constants.should include :DEPRECATION_PREFIX }
+  it { expect(described_class.constants).to include :DEPRECATION_PREFIX }
 
   context '.deprecate' do
     before do
