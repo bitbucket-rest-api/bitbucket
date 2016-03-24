@@ -93,24 +93,6 @@ module BitBucket
       { 'user' => self.user, 'repo' => self.repo }.merge!(params)
     end
 
-    # TODO: See whether still needed, consider adding to core_exts
-    def _hash_traverse(hash, &block)
-      hash.each do |key, val|
-        block.call(key)
-        case val
-        when Hash
-          val.keys.each do |k|
-            _hash_traverse(val, &block)
-          end
-        when Array
-          val.each do |item|
-            _hash_traverse(item, &block)
-          end
-        end
-      end
-      return hash
-    end
-
     def _merge_mime_type(resource, params) # :nodoc:
                                            #       params['resource'] = resource
                                            #       params['mime_type'] = params['mime_type'] || :raw
