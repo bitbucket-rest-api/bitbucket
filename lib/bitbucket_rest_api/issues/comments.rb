@@ -94,7 +94,7 @@ module BitBucket
       filter! VALID_ISSUE_COMMENT_PARAM_NAME, params
       assert_required_keys(%w[ content ], params)
 
-      put_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/comments/#{comment_id}")
+      put_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/comments/#{comment_id}", params)
     end
 
     # Delete a comment
