@@ -3,7 +3,7 @@ require 'bitbucket_rest_api/request'
 
 describe BitBucket::Request do
   let(:fake_api) { (Class.new { include BitBucket::Request })}
-  let(:faraday_connection) { Faraday.new(:url => 'https://bitbucket.org/api') }
+  let(:faraday_connection) { Faraday.new(:url => 'https://api.bitbucket.org') }
 
   describe "request" do
     it "raises an ArgumentError if an unsupported HTTP verb is used" do
@@ -17,7 +17,7 @@ describe BitBucket::Request do
       end
 
       it "supports get" do
-        stub_request(:get, "https://bitbucket.org/api/1.0/repositories").
+        stub_request(:get, "https://api.bitbucket.org/1.0/repositories").
          with(:headers => {
           'Accept' => '*/*',
           'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
@@ -29,7 +29,7 @@ describe BitBucket::Request do
       end
 
       it "supports put" do
-        stub_request(:put, "https://bitbucket.org/api/1.0/repositories").
+        stub_request(:put, "https://api.bitbucket.org/1.0/repositories").
          with(:body => { "data" => "payload" },
           :headers => {
             'Accept' => '*/*',
@@ -42,7 +42,7 @@ describe BitBucket::Request do
       end
 
       it "supports patch" do
-        stub_request(:patch, "https://bitbucket.org/api/1.0/repositories").
+        stub_request(:patch, "https://api.bitbucket.org/1.0/repositories").
          with(:body => { "data" => "payload" },
           :headers => {
             'Accept' => '*/*',
@@ -55,7 +55,7 @@ describe BitBucket::Request do
       end
 
       it "supports delete" do
-        stub_request(:delete, "https://bitbucket.org/api/1.0/repositories").
+        stub_request(:delete, "https://api.bitbucket.org/1.0/repositories").
          with(:headers => {
           'Accept' => '*/*',
           'Authorization' => 'Bearer 12345',
@@ -65,7 +65,7 @@ describe BitBucket::Request do
       end
 
       it "supports post" do
-        stub_request(:post, "https://bitbucket.org/api/1.0/repositories").
+        stub_request(:post, "https://api.bitbucket.org/1.0/repositories").
          with(:body => { "data" => "payload" },
           :headers => {
             'Accept' => '*/*',
