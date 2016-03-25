@@ -25,8 +25,7 @@ module BitBucket
     #
     # = Examples
     #  bitbucket = BitBucket.new
-    #  bitbucket.repos.pull_request.list 'user-name', 'repo-name'
-    #  bitbucket.repos.pull_request.list 'user-name', 'repo-name' { |status| ... }
+    #  bitbucket.repos.pull_request.participants 'user-name', 'repo-name', 'number'
     #
     def participants(user_name, repo_name, pull_request_id, params={})
       _update_user_repo_params(user_name, repo_name)
@@ -34,6 +33,22 @@ module BitBucket
       normalize! params
 
       response = get_request("/1.0/repositories/#{user}/#{repo.downcase}/pullrequests/#{pull_request_id}/participants", params)
+      return response unless block_given?
+      response.each { |el| yield el }
+    end
+
+    # List pull request commits
+    #
+    # = Examples
+    #  bitbucket = BitBucket.new
+    #  bitbucket.repos.pull_request.commits 'user-name', 'repo-name', 'number'
+    #
+    def commits(user_name, repo_name, pull_request_id, params={})
+      _update_user_repo_params(user_name, repo_name)
+      _validate_user_repo_params(user, repo) unless user? && repo?
+      normalize! params
+
+      response = get_request("/2.0/repositories/#{user}/#{repo.downcase}/pullrequests/#{pull_request_id}/commits", params)
       return response unless block_given?
       response.each { |el| yield el }
     end
