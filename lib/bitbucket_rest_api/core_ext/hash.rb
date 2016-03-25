@@ -5,10 +5,8 @@ class Hash # :nodoc:
   end unless method_defined?(:except)
 
   def except!(*keys) # :nodoc:
-    copy = self.dup
-    # FIXME delete! is not a hash instance method
-    keys.each { |key| copy.delete!(key) }
-    copy
+    keys.each { |key| self.delete(key) }
+    self
   end unless method_defined?(:except!)
 
   def symbolize_keys  # :nodoc:
