@@ -34,14 +34,14 @@ module BitBucket
         'events'
       )
 
-      post_request("2.0/repositories/#{user_name}/#{repo_name}/hooks", params)
+      post_request("/2.0/repositories/#{user_name}/#{repo_name}/hooks", params)
     end
 
     def list(user_name, repo_name)
       _update_user_repo_params(user_name, repo_name)
       _validate_user_repo_params(user, repo) unless user? && repo?
 
-      get_request("2.0/repositories/#{user_name}/#{repo_name}/hooks")
+      get_request("/2.0/repositories/#{user_name}/#{repo_name}/hooks")
     end
 
     def get(user_name, repo_name, hook_uuid)
@@ -49,7 +49,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
 
       get_request(
-        "2.0/repositories/#{user_name}/#{repo_name}/hooks/#{hook_uuid}"
+        "/2.0/repositories/#{user_name}/#{repo_name}/hooks/#{hook_uuid}"
       )
     end
 
@@ -68,7 +68,7 @@ module BitBucket
       )
 
       put_request(
-        "2.0/repositories/#{user_name}/#{repo_name}/hooks/#{hook_uuid}",
+        "/2.0/repositories/#{user_name}/#{repo_name}/hooks/#{hook_uuid}",
         params
       )
     end
@@ -78,7 +78,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
 
       delete_request(
-        "2.0/repositories/#{user_name}/#{repo_name}/hooks/#{hook_uuid}"
+        "/2.0/repositories/#{user_name}/#{repo_name}/hooks/#{hook_uuid}"
       )
     end
 

@@ -110,7 +110,7 @@ describe BitBucket::Repos::Webhooks, wip: true do
     it 'makes a POST request to create a specific webhook' do
       expect(subject).to receive(:request).with(
         :post,
-        '2.0/repositories/mock_username/mock_repo/hooks',
+        '/2.0/repositories/mock_username/mock_repo/hooks',
         post_put_params,
         {}
       )
@@ -127,7 +127,7 @@ describe BitBucket::Repos::Webhooks, wip: true do
     it 'makes a GET request for all the webhooks beloning to the given repo' do
       expect(subject).to receive(:request).with(
         :get,
-        '2.0/repositories/mock_username/mock_repo/hooks',
+        '/2.0/repositories/mock_username/mock_repo/hooks',
         {},
         {}
       )
@@ -140,7 +140,7 @@ describe BitBucket::Repos::Webhooks, wip: true do
     it 'makes a GET request for a specific webook' do
       expect(subject).to receive(:request).with(
         :get,
-        '2.0/repositories/mock_username/mock_repo/hooks/mock_uuid',
+        '/2.0/repositories/mock_username/mock_repo/hooks/mock_uuid',
         {},
         {}
       )
@@ -216,7 +216,7 @@ describe BitBucket::Repos::Webhooks, wip: true do
     it 'makes a PUT request for the given webhook' do
       expect(subject).to receive(:request).with(
         :put,
-        '2.0/repositories/mock_username/mock_repo/hooks/mock_uuid',
+        '/2.0/repositories/mock_username/mock_repo/hooks/mock_uuid',
         post_put_params,
         {}
       )
@@ -234,7 +234,7 @@ describe BitBucket::Repos::Webhooks, wip: true do
     it 'sends a DELETE request for the given webhook' do
       expect(subject).to receive(:request).with(
         :delete,
-        '2.0/repositories/mock_username/mock_repo/hooks/mock_uuid',
+        '/2.0/repositories/mock_username/mock_repo/hooks/mock_uuid',
         {},
         {}
       )
