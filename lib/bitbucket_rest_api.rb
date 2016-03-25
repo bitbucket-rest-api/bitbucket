@@ -81,6 +81,7 @@ module BitBucket
 
   #:Teams           => 'teams',
   #:PullRequests    => 'pull_requests',
+  #:Status    => 'statuses',
   #:Users           => 'users',
   #:Events          => 'events',
   #:Search          => 'search',

@@ -28,6 +28,10 @@ module BitBucket
       @pull_requests ||= ApiFactory.new 'Repos::PullRequest', options
     end
 
+    def status(options = {})
+      @status ||= ApiFactory.new 'Repos::Status', options
+    end
+
     def repos(options = {})
       @repos ||= ApiFactory.new 'Repos', options
     end
