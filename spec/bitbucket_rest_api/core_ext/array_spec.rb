@@ -13,7 +13,7 @@ describe Array do
   end
 
   describe '#except!' do
-    xit 'removes the keys from the self' do
+    it 'removes the keys from the self' do
       array = [:a, :b, :c, :d]
       array.except!(:a, :b)
 
