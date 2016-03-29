@@ -32,11 +32,19 @@ describe BitBucket::Repos::PullRequest do
         "/1.0/repositories/mock_user/mock_repo/pullrequests/mock_pull_request_id/participants",
         {},
         {}
-      )
+      ).and_return(['participant1', 'participant2', 'participant3'])
     end
 
-    it 'makes a GET request for all participants belonging to the repo' do
-      subject.participants('mock_user', 'mock_repo', 'mock_pull_request_id')
+    context 'without a block' do
+      it 'makes a GET request for all participants belonging to the repo' do
+        subject.participants('mock_user', 'mock_repo', 'mock_pull_request_id')
+      end
+    end
+
+    context 'with a block' do
+      it 'makes a GET request for all participants belonging to the repo' do
+        subject.participants('mock_user', 'mock_repo', 'mock_pull_request_id') { |p| p }
+      end
     end
   end
 
