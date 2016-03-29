@@ -99,7 +99,7 @@ module BitBucket
       _validate_presence_of component_id
       normalize! params
 
-      delete_request("/1.0/repositories/#{user}/#{repo.downcase}/labels/components/#{component_id}", params)
+      delete_request("/1.0/repositories/#{user}/#{repo.downcase}/issues/components/#{component_id}", params)
     end
 
   end # Issues::Components
