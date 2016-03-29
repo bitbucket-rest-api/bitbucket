@@ -7,7 +7,7 @@ describe BitBucket::Repos::Commits do
     before do
       expect(commits).to receive(:request).with(
         :get,
-        '/1.0/repositories/mock_username/mock_repo/commits',
+        '/2.0/repositories/mock_username/mock_repo/commits',
         {},
         {}
       )
