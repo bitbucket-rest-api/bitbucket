@@ -49,11 +49,19 @@ describe BitBucket::Repos do
         '/1.0/repositories/mock_username/mock_repo/branches/',
         {},
         {}
-      )
+      ).and_return(['branch1', 'branch2', 'branch3'])
     end
 
-    it 'invokes the .request method' do
-      repo.branches('mock_username', 'mock_repo')
+    context 'without a block' do
+      it 'invokes the .request method' do
+        repo.branches('mock_username', 'mock_repo')
+      end
+    end
+
+    context 'with a block' do
+      it 'invokes the .request method' do
+        repo.branches('mock_username', 'mock_repo') { |branch| branch }
+      end
     end
   end
 
