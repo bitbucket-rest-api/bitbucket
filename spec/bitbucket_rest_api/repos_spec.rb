@@ -119,11 +119,19 @@ describe BitBucket::Repos do
         '/1.0/repositories/mock_username/mock_repo/tags/',
         {},
         {}
-      )
+      ).and_return(['tag1', 'tag2' ,'tag3'])
     end
 
-    it 'should send a GET request for the tags belonging to the given repo' do
-      repo.tags('mock_username', 'mock_repo')
+    context 'without a block' do
+      it 'should send a GET request for the tags belonging to the given repo' do
+        repo.tags('mock_username', 'mock_repo')
+      end
+    end
+
+    context 'with a block' do
+      it 'should send a GET request for the tags belonging to the given repo' do
+        repo.tags('mock_username', 'mock_repo') { |tag| tag }
+      end
     end
   end
 
