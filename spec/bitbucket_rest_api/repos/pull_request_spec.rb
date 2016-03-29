@@ -9,11 +9,19 @@ describe BitBucket::Repos::PullRequest do
         '/2.0/repositories/mock_user/mock_repo/pullrequests',
         {},
         {}
-      )
+      ).and_return(['pr1', 'pr2', 'pr3'])
     end
 
-    it 'makes a GET request for all pull requests belonging to the repo' do
-      subject.list('mock_user', 'mock_repo')
+    context 'without a block' do
+      it 'makes a GET request for all pull requests belonging to the repo' do
+        subject.list('mock_user', 'mock_repo')
+      end
+    end
+
+    context 'with a block' do
+      it 'makes a GET request for all pull requests belonging to the repo' do
+        subject.list('mock_user', 'mock_repo') { |pr| pr }
+      end
     end
   end
 
