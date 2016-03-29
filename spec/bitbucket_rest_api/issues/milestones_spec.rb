@@ -10,11 +10,19 @@ describe BitBucket::Issues::Milestones do
         '/1.0/repositories/mock_username/mock_repo/issues/milestones',
         {},
         {}
-      )
+      ).and_return(['milsetone1', 'milestone2', 'milestone3'])
     end
 
-    it 'makes a GET request for the milestones belonging to the given repo' do
-      subject.list('mock_username', 'mock_repo')
+    context 'without a block' do
+      it 'makes a GET request for the milestones belonging to the given repo' do
+        subject.list('mock_username', 'mock_repo')
+      end
+    end
+
+    context 'with a block' do
+      it 'makes a GET request for the milestones belonging to the given repo' do
+        subject.list('mock_username', 'mock_repo') { |milestone| milestone }
+      end
     end
   end
 
