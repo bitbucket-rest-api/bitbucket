@@ -95,12 +95,20 @@ describe BitBucket::Repos do
         '/1.0/user/repositories',
         {},
         {}
-      )
+      ).and_return(['repo1', 'repo2' ,'repo3'])
     end
 
     # FIXME: this method belongs in the User class!
-    it 'should send a GET request for the authenticated users repos' do
-      repo.list
+    context 'without a block' do
+      it 'should send a GET request for the authenticated users repos' do
+        repo.list
+      end
+    end
+
+    context 'with a block' do
+      it 'should send a GET request for the authenticated users repos' do
+        repo.list { |repo| repo }
+      end
     end
   end
 
