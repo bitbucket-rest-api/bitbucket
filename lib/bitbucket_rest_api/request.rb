@@ -47,7 +47,11 @@ module BitBucket
           request.url(path, params)
         when *METHODS_WITH_BODIES
           request.path = path
-          request.body = extract_data_from_params(params) unless params.empty?
+          unless params.empty?
+            # data = extract_data_from_params(params)
+            # request.body = MultiJson.dump(data)
+            request.body = MultiJson.dump(params)
+          end
         end
       end
       response.body
@@ -55,10 +59,13 @@ module BitBucket
 
     private
 
-    def extract_data_from_params(params) # :nodoc:
-      return params['data'] if params.has_key?('data') and !params['data'].nil?
-      return params
-    end
+    # def extract_data_from_params(params) # :nodoc:
+    #   if params.has_key?('data') and !params['data'].nil?
+    #     params['data']
+    #   else
+    #     params
+    #   end
+    # end
 
     def _extract_mime_type(params, options) # :nodoc:
       options['resource']  = params['resource'] ? params.delete('resource') : ''

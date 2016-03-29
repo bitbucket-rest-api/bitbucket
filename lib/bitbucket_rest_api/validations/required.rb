@@ -19,6 +19,26 @@ module BitBucket
         result
       end
 
+      # Validate that required values are not blank
+      # the *required are colon separated strings
+      # e.g. 'source:branch:name' tests value of params[:source][:branch][:name]
+      #
+      def assert_required_values_present(params, *required)
+        required.each do |encoded_string|
+          keys = parse_values(encoded_string)
+          value = keys.inject(params) { |params, key| params[key] }
+          if value.is_a?(String)
+            if value.empty?
+              raise BitBucket::Error::BlankValue.new(encoded_string)
+            end
+          end
+        end
+      end
+
+      def parse_values(string)
+        string.split(':')
+      end
+
     end # Required
   end # Validations
 end # BitBucket
