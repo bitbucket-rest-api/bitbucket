@@ -126,7 +126,7 @@ describe BitBucket::Repos::PullRequest do
     end
   end
 
-  describe '.get_commits' do
+  describe '.commits' do
     before do
       expect(subject).to receive(:request).with(
         :get,
@@ -136,11 +136,11 @@ describe BitBucket::Repos::PullRequest do
     end
 
     it 'makes a GET request for the commits' do
-      subject.get_commits('mock_user', 'mock_repo', 'mock_id')
+      subject.commits('mock_user', 'mock_repo', 'mock_id')
     end
   end
 
-  describe '.get_commits' do
+  describe '.commits' do
     before do
       expect(subject).to receive(:request).with(
         :post,

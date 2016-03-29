@@ -65,7 +65,7 @@ module BitBucket
       return response unless block_given?
     end
 
-    def get_commits(user_name, repo_name, pull_request_id, params={})
+    def commits(user_name, repo_name, pull_request_id, params={})
       _update_user_repo_params(user_name, repo_name)
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
