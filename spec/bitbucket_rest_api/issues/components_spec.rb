@@ -10,11 +10,19 @@ describe BitBucket::Issues::Components do
         '/1.0/repositories/mock_username/mock_repo/issues/components',
         {},
         {}
-      )
+      ).and_return(['component1', 'component2', 'component3'])
     end
 
-    it 'makes a GET request for the components belonging to the given repo' do
-      subject.list('mock_username', 'mock_repo')
+    context 'without a block' do
+      it 'makes a GET request for the components belonging to the given repo' do
+        subject.list('mock_username', 'mock_repo')
+      end
+    end
+
+    context 'with a block' do
+      it 'makes a GET request for the components belonging to the given repo' do
+        subject.list('mock_username', 'mock_repo') { |component| component }
+      end
     end
   end
 
