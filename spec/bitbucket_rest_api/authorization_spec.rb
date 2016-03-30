@@ -16,13 +16,13 @@ describe BitBucket::Authorization do
   end
 
   describe '#authenticated?' do
-    context 'context: oauth authentication' do
-      it 'should return true of oauth is used' do
+    context 'oauth authentication' do
+      it 'should return true if oauth is used' do
         expect(oauth_api.authenticated?).to eq(true)
       end
     end
 
-    context 'context: basic authentication' do
+    context 'basic authentication' do
       it 'should return true if basic authentication is used' do
         expect(basic_auth_api.authenticated?).to eq(true)
       end
@@ -30,14 +30,14 @@ describe BitBucket::Authorization do
   end
 
   describe '#basic_authed?' do
-    context 'context: with basic_auth' do
+    context 'with basic_auth' do
       it 'should return true if basic_auth is set' do
         expect(basic_auth_api.basic_authed?).to eq(true)
         expect(basic_auth_api_hash.basic_authed?).to eq(true)
       end
     end
 
-    context 'context: with login and password' do
+    context 'with login and password' do
       it 'should return true if a login and password are set' do
         expect(login_and_password_api.basic_authed?).to eq(true)
       end
