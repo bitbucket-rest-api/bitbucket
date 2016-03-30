@@ -85,20 +85,20 @@ describe BitBucket::Repos::PullRequest do
         },
         close_source_branch: true
       }
+    end
 
+    it 'makes a POST request to create a new pull request' do
       expect(subject).to receive(:request).with(
         :post,
         '/2.0/repositories/mock_user/mock_repo/pullrequests',
         @params
       )
-    end
 
-    it 'makes a POST request to create a new pull request' do
       subject.create('mock_user', 'mock_repo', @params)
     end
 
-    xit 'validates presence of required params' do
-      # expect do
+    it 'validates presence of required params' do
+      expect do
       subject.create(
         'mock_user',
         'mock_repo',
@@ -124,7 +124,7 @@ describe BitBucket::Repos::PullRequest do
           close_source_branch: true
         }
       )
-      # end.to(raise_error())
+      end.to raise_error
     end
   end
 
