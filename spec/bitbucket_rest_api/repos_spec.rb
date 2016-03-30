@@ -151,6 +151,7 @@ describe BitBucket::Repos do
       expect(repo.commits).to be_a BitBucket::Repos::Commits
       expect(repo.pull_request).to be_a BitBucket::Repos::PullRequest
       expect(repo.forks).to be_a BitBucket::Repos::Forks
+      expect(repo.download).to be_a BitBucket::Repos::Download
     end
   end
 end

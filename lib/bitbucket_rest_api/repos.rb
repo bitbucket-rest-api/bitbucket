@@ -72,10 +72,10 @@ module BitBucket
       @forks ||= ApiFactory.new 'Repos::Forks'
     end
     def commits
-      @services ||=ApiFactory.new 'Repos::Commits'
+      @commits ||=ApiFactory.new 'Repos::Commits'
     end
     def download
-      @services ||=ApiFactory.new "Repos::Download"
+      @download ||=ApiFactory.new "Repos::Download"
     end
 
     # Access to Repos::PullRequests API
