@@ -150,6 +150,7 @@ describe BitBucket::Repos do
       expect(repo.following).to be_a BitBucket::Repos::Following
       expect(repo.commits).to be_a BitBucket::Repos::Commits
       expect(repo.pull_request).to be_a BitBucket::Repos::PullRequest
+      expect(repo.forks).to be_a BitBucket::Repos::Forks
     end
   end
 end
