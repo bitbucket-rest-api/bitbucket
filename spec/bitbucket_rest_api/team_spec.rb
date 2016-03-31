@@ -63,4 +63,27 @@ describe BitBucket::Team do
       end
     end
   end
+
+  describe '.followers' do
+    before do
+      expect(team).to receive(:request).with(
+        :get,
+        '/2.0/teams/team_name/followers',
+        {},
+        {}
+      ).and_return({"values" => ['follower1', 'follower2', 'follower3']})
+    end
+
+    context "without a block" do
+      it 'sends a GET request for the followers of the team' do
+        team.followers('team_name')
+      end
+    end
+
+    context "with a block" do
+      it 'sends a GET request for the followers of the team' do
+        team.followers('team_name') { |follower| follower }
+      end
+    end
+  end
 end
