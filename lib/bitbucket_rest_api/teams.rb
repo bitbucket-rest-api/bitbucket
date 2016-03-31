@@ -14,6 +14,8 @@ module BitBucket
       response["values"].each { |el| yield el }
     end
 
+    alias :all :list
+
     def profile(team_name)
       get_request("/2.0/teams/#{team_name.to_s}")
     end
@@ -41,6 +43,8 @@ module BitBucket
       return response["values"] unless block_given?
       response["values"].each { |el| yield el }
     end
+
+    alias :repositories :repos
 
   end # Team
 end # BitBucket
