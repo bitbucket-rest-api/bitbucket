@@ -10,11 +10,19 @@ describe BitBucket::Team do
         '/2.0/teams/?role=member',
         {},
         {}
-      )
+      ).and_return({"values" => ['team1', 'team2', 'team3']})
     end
 
-    it 'should send a GET request for the teams of which the user is a member' do
-      team.list(:member)
+    context 'without a block' do
+      it 'should send a GET request for the teams of which the user is a member' do
+        team.list(:member)
+      end
+    end
+
+    context 'with a block' do
+      it 'should send a GET request for the teams of which the user is a member' do
+        team.list(:member) { |team| team }
+      end
     end
   end
 end

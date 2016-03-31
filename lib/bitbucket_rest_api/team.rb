@@ -11,7 +11,7 @@ module BitBucket
     def list(user_role)
       response = get_request("/2.0/teams/?role=#{user_role.to_s}")
       return response unless block_given?
-      response.each { |el| yield el }
+      response["values"].each { |el| yield el }
     end
 
 
