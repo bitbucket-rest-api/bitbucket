@@ -18,5 +18,11 @@ module BitBucket
       get_request("/2.0/teams/#{team_name.to_s}")
     end
 
+    def members(team_name)
+      response = get_request("/2.0/teams/#{team_name.to_s}/members")
+      return response unless block_given?
+      response["values"].each { |el| yield el }
+    end
+
   end # Users
 end # BitBucket

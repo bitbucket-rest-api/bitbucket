@@ -48,11 +48,19 @@ describe BitBucket::Team do
         '/2.0/teams/team_name/members',
         {},
         {}
-      )
+      ).and_return({"values" => ['member1', 'member2', 'member3']})
     end
 
-    it 'sends a GET request for the members of the team' do
-      team.members('team_name')
+    context "without a block" do
+      it 'sends a GET request for the members of the team' do
+        team.members('team_name')
+      end
+    end
+
+    context "with a block" do
+      it 'sends a GET request for the members of the team' do
+        team.members('team_name') { |member| member }
+      end
     end
   end
 end
