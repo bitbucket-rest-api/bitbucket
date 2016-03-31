@@ -14,6 +14,9 @@ module BitBucket
       response["values"].each { |el| yield el }
     end
 
+    def profile(team_name)
+      get_request("/2.0/teams/#{team_name.to_s}")
+    end
 
   end # Users
 end # BitBucket
