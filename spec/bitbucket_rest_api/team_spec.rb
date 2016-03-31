@@ -109,4 +109,27 @@ describe BitBucket::Team do
       end
     end
   end
+
+  describe '.repos' do
+    before do
+      expect(team).to receive(:request).with(
+        :get,
+        '/2.0/teams/team_name/repositories',
+        {},
+        {}
+      ).and_return({"values" => ['repo1', 'repo2', 'repo3']})
+    end
+
+    context "without a block" do
+      it 'sends a GET request for the repos for the team' do
+        team.repos('team_name')
+      end
+    end
+
+    context "with a block" do
+      it 'sends a GET request for the repos for the team' do
+        team.repos('team_name') { |repo| repo }
+      end
+    end
+  end
 end
