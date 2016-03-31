@@ -40,4 +40,19 @@ describe BitBucket::Team do
       team.profile('team_name')
     end
   end
+
+  describe '.members' do
+    before do
+      expect(team).to receive(:request).with(
+        :get,
+        '/2.0/teams/team_name/members',
+        {},
+        {}
+      )
+    end
+
+    it 'sends a GET request for the members of the team' do
+      team.members('team_name')
+    end
+  end
 end
