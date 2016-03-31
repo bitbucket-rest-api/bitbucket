@@ -10,7 +10,7 @@ module BitBucket
 
     def list(user_role)
       response = get_request("/2.0/teams/?role=#{user_role.to_s}")
-      return response unless block_given?
+      return response["values"] unless block_given?
       response["values"].each { |el| yield el }
     end
 
@@ -20,25 +20,25 @@ module BitBucket
 
     def members(team_name)
       response = get_request("/2.0/teams/#{team_name.to_s}/members")
-      return response unless block_given?
+      return response["values"] unless block_given?
       response["values"].each { |el| yield el }
     end
 
     def followers(team_name)
       response = get_request("/2.0/teams/#{team_name.to_s}/followers")
-      return response unless block_given?
+      return response["values"] unless block_given?
       response["values"].each { |el| yield el }
     end
 
     def following(team_name)
       response = get_request("/2.0/teams/#{team_name.to_s}/following")
-      return response unless block_given?
+      return response["values"] unless block_given?
       response["values"].each { |el| yield el }
     end
 
     def repos(team_name)
       response = get_request("/2.0/repositories/#{team_name.to_s}")
-      return response unless block_given?
+      return response["values"] unless block_given?
       response["values"].each { |el| yield el }
     end
 
