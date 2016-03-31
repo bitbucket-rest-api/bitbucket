@@ -114,7 +114,7 @@ describe BitBucket::Teams do
     before do
       expect(team).to receive(:request).with(
         :get,
-        '/2.0/teams/team_name/repositories',
+        '/2.0/repositories/team_name',
         {},
         {}
       ).and_return({"values" => ['repo1', 'repo2', 'repo3']})

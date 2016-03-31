@@ -37,7 +37,7 @@ module BitBucket
     end
 
     def repos(team_name)
-      response = get_request("/2.0/teams/#{team_name.to_s}/repositories")
+      response = get_request("/2.0/repositories/#{team_name.to_s}")
       return response unless block_given?
       response["values"].each { |el| yield el }
     end
