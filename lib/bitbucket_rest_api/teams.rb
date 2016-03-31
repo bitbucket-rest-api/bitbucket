@@ -13,9 +13,9 @@ module BitBucket
     #
     # = Examples
     #   bitbucket = BitBucket.new :oauth_token => '...', :oauth_secret => '...'
-    #   Teams.new.list(:admin)
-    #   Teams.new.list('member')
-    #   Teams.new.list(:contributor) { |team| ... }
+    #   bitbucket.teams.list(:admin)
+    #   bitbucket.teams.list('member')
+    #   bitbucket.teams.list(:contributor) { |team| ... }
     def list(user_role)
       response = get_request("/2.0/teams/?role=#{user_role.to_s}")
       return response["values"] unless block_given?
@@ -28,7 +28,7 @@ module BitBucket
     #
     # = Example
     #   bitbucket = BitBucket.new :oauth_token => '...', :oauth_secret => '...'
-    #   Teams.new.profile(:team_name_here)
+    #   bitbucket.teams.profile(:team_name_here)
     def profile(team_name)
       get_request("/2.0/teams/#{team_name.to_s}")
     end
@@ -37,8 +37,8 @@ module BitBucket
     #
     # = Examples
     #   bitbucket = BitBucket.new :oauth_token => '...', :oauth_secret => '...'
-    #   Teams.new.members(:team_name_here)
-    #   Teams.new.members(:team_name_here) { |member| ... }
+    #   bitbucket.teams.members(:team_name_here)
+    #   bitbucket.teams.members(:team_name_here) { |member| ... }
     def members(team_name)
       response = get_request("/2.0/teams/#{team_name.to_s}/members")
       return response["values"] unless block_given?
@@ -49,8 +49,8 @@ module BitBucket
     #
     # = Examples
     #   bitbucket = BitBucket.new :oauth_token => '...', :oauth_secret => '...'
-    #   Teams.new.followers(:team_name_here)
-    #   Teams.new.followers(:team_name_here) { |follower| ... }
+    #   bitbucket.teams.followers(:team_name_here)
+    #   bitbucket.teams.followers(:team_name_here) { |follower| ... }
     def followers(team_name)
       response = get_request("/2.0/teams/#{team_name.to_s}/followers")
       return response["values"] unless block_given?
@@ -61,8 +61,8 @@ module BitBucket
     #
     # = Examples
     #   bitbucket = BitBucket.new :oauth_token => '...', :oauth_secret => '...'
-    #   Teams.new.following(:team_name_here)
-    #   Teams.new.following(:team_name_here) { |followee| ... }
+    #   bitbucket.teams.following(:team_name_here)
+    #   bitbucket.teams.following(:team_name_here) { |followee| ... }
     def following(team_name)
       response = get_request("/2.0/teams/#{team_name.to_s}/following")
       return response["values"] unless block_given?
@@ -74,8 +74,8 @@ module BitBucket
     #
     # = Examples
     #   bitbucket = BitBucket.new :oauth_token => '...', :oauth_secret => '...'
-    #   Teams.new.repos(:team_name_here)
-    #   Teams.new.repos(:team_name_here) { |repo| ... }
+    #   bitbucket.teams.repos(:team_name_here)
+    #   bitbucket.teams.repos(:team_name_here) { |repo| ... }
     def repos(team_name)
       response = get_request("/2.0/repositories/#{team_name.to_s}")
       return response["values"] unless block_given?
