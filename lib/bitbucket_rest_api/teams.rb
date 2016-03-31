@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module BitBucket
-  class Team < API
+  class Teams < API
     extend AutoloadHelper
 
     def initialize(options = { })

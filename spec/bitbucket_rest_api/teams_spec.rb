@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe BitBucket::Team do
-  let(:team) { BitBucket::Team.new }
+describe BitBucket::Teams do
+  let(:team) { described_class.new }
 
   describe '.list' do
     before do

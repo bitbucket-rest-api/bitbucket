@@ -77,7 +77,7 @@ module BitBucket
                :User            => 'user',
                :Users           => 'users',
                :Invitations     => 'invitations',
-               :Team            => 'team'
+               :Teams           => 'teams'
 
   #:Teams           => 'teams',
   #:PullRequests    => 'pull_requests',
