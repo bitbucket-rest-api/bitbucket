@@ -86,4 +86,27 @@ describe BitBucket::Team do
       end
     end
   end
+
+  describe '.following' do
+    before do
+      expect(team).to receive(:request).with(
+        :get,
+        '/2.0/teams/team_name/following',
+        {},
+        {}
+      ).and_return({"values" => ['following1', 'following2', 'following3']})
+    end
+
+    context "without a block" do
+      it 'sends a GET request for accounts the team is following' do
+        team.following('team_name')
+      end
+    end
+
+    context "with a block" do
+      it 'sends a GET request for accounts the team is following' do
+        team.following('team_name') { |followee| followee }
+      end
+    end
+  end
 end
