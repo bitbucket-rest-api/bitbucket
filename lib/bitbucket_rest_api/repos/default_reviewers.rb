@@ -9,8 +9,7 @@ module BitBucket
     #  bitbucket.repos.default_reviewers.list 'user-name', 'repo-name' { |reviewer| ... }
     #
     def list(user_name, repo_name, params={})
-      _update_user_repo_params(user_name, repo_name)
-      _validate_user_repo_params(user, repo) unless user? && repo?
+      update_and_validate_user_repo_params(user_name, repo_name)
       normalize! params
 
       response = get_request("/2.0/repositories/#{user_name}/#{repo_name}/default-reviewers", params)
@@ -26,8 +25,7 @@ module BitBucket
     #  bitbucket.repos.default_reviewers.get 'user-name', 'repo-name', 'reviewer-username'
     #
     def get(user_name, repo_name, reviewer_username, params={})
-      _update_user_repo_params(user_name, repo_name)
-      _validate_user_repo_params(user, repo) unless user? && repo?
+      update_and_validate_user_repo_params(user_name, repo_name)
       normalize! params
 
       get_request("/2.0/repositories/#{user_name}/#{repo_name}/default-reviewers/#{reviewer_username}", params)
@@ -40,8 +38,7 @@ module BitBucket
     #  bitbucket.repos.default_reviewers.add 'user-name', 'repo-name', 'reviewer-username'
     #
     def add(user_name, repo_name, reviewer_username, params={})
-      _update_user_repo_params(user_name, repo_name)
-      _validate_user_repo_params(user, repo) unless user? && repo?
+      update_and_validate_user_repo_params(user_name, repo_name)
       normalize! params
 
       put_request("/2.0/repositories/#{user_name}/#{repo_name}/default-reviewers/#{reviewer_username}", params)
@@ -54,10 +51,8 @@ module BitBucket
     #  bitbucket.repos.default_reviewers.remove 'user-name', 'repo-name', 'reviewer-username'
     #
     def remove(user_name, repo_name, reviewer_username, params={})
-      _update_user_repo_params(user_name, repo_name)
-      _validate_user_repo_params(user, repo) unless user? && repo?
+      update_and_validate_user_repo_params(user_name, repo_name)
       normalize! params
-
       delete_request("/2.0/repositories/#{user_name}/#{repo_name}/default-reviewers/#{reviewer_username}", params)
     end
   end

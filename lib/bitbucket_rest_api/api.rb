@@ -80,6 +80,11 @@ module BitBucket
       end
     end
 
+    def update_and_validate_user_repo_params(user_name, repo_name)
+      _update_user_repo_params(user_name, repo_name)
+      _validate_user_repo_params(user, repo) unless user? && repo?
+    end
+
     def _update_user_repo_params(user_name, repo_name=nil) # :nodoc:
       self.user = user_name || self.user
       self.repo = repo_name || self.repo
