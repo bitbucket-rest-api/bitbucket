@@ -46,4 +46,19 @@ describe BitBucket::Repos::DefaultReviewers do
       subject.add('mock_user', 'mock_repo', 'mock_reviewer')
     end
   end
+
+  describe '#remove' do
+    before do
+      expect(subject).to receive(:request).with(
+        :delete,
+        '/2.0/repositories/mock_user/mock_repo/default-reviewers/mock_reviewer',
+        {},
+        {}
+      )
+    end
+
+    it 'makes a GET request for all pull requests belonging to the repo' do
+      subject.remove('mock_user', 'mock_repo', 'mock_reviewer')
+    end
+  end
 end

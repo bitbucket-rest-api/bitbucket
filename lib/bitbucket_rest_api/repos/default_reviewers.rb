@@ -19,6 +19,12 @@ module BitBucket
     end
     alias :all :list
 
+    # Get a default reviewer's info
+    #
+    # = Examples
+    #  bitbucket = BitBucket.new
+    #  bitbucket.repos.default_reviewers.get 'user-name', 'repo-name', 'reviewer-username'
+    #
     def get(user_name, repo_name, reviewer_username, params={})
       _update_user_repo_params(user_name, repo_name)
       _validate_user_repo_params(user, repo) unless user? && repo?
@@ -27,6 +33,12 @@ module BitBucket
       get_request("/2.0/repositories/#{user_name}/#{repo_name}/default-reviewers/#{reviewer_username}", params)
     end
 
+    # Add a user to the default-reviewers list for the repo
+    #
+    # = Examples
+    #  bitbucket = BitBucket.new
+    #  bitbucket.repos.default_reviewers.add 'user-name', 'repo-name', 'reviewer-username'
+    #
     def add(user_name, repo_name, reviewer_username, params={})
       _update_user_repo_params(user_name, repo_name)
       _validate_user_repo_params(user, repo) unless user? && repo?
@@ -35,5 +47,18 @@ module BitBucket
       put_request("/2.0/repositories/#{user_name}/#{repo_name}/default-reviewers/#{reviewer_username}", params)
     end
 
+    # Remove a user from the default-reviewers list for the repo
+    #
+    # = Examples
+    #  bitbucket = BitBucket.new
+    #  bitbucket.repos.default_reviewers.remove 'user-name', 'repo-name', 'reviewer-username'
+    #
+    def remove(user_name, repo_name, reviewer_username, params={})
+      _update_user_repo_params(user_name, repo_name)
+      _validate_user_repo_params(user, repo) unless user? && repo?
+      normalize! params
+
+      delete_request("/2.0/repositories/#{user_name}/#{repo_name}/default-reviewers/#{reviewer_username}", params)
+    end
   end
 end
