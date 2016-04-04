@@ -27,5 +27,13 @@ module BitBucket
       get_request("/2.0/repositories/#{user_name}/#{repo_name}/default-reviewers/#{reviewer_username}", params)
     end
 
+    def add_to_list(user_name, repo_name, reviewer_username, params={})
+      _update_user_repo_params(user_name, repo_name)
+      _validate_user_repo_params(user, repo) unless user? && repo?
+      normalize! params
+
+      put_request("/2.0/repositories/#{user_name}/#{repo_name}/default-reviewers/#{reviewer_username}", params)
+    end
+
   end
 end
