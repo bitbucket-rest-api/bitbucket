@@ -32,7 +32,7 @@ describe BitBucket::Repos::DefaultReviewers do
     end
   end
 
-  describe '#add_to_list' do
+  describe '#add' do
     before do
       expect(subject).to receive(:request).with(
         :put,
@@ -43,7 +43,7 @@ describe BitBucket::Repos::DefaultReviewers do
     end
 
     it 'makes a GET request for all pull requests belonging to the repo' do
-      subject.add_to_list('mock_user', 'mock_repo', 'mock_reviewer')
+      subject.add('mock_user', 'mock_repo', 'mock_reviewer')
     end
   end
 end
