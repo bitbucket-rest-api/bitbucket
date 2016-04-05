@@ -16,8 +16,8 @@ module BitBucket
       normalize! params
 
       response = get_request("/2.0/repositories/#{user}/#{repo.downcase}/components", params)
-      return response unless block_given?
-      response.each { |el| yield el }
+      return response['values'] unless block_given?
+      response['values'].each { |el| yield el }
     end
     alias :all :list
 

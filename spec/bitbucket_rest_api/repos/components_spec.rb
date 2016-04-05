@@ -9,7 +9,7 @@ describe BitBucket::Repos::Components do
         '/2.0/repositories/mock_user/mock_repo/components',
         {},
         {}
-      )
+      ).and_return({values: ['component1', 'component2', 'component3']})
     end
 
     it 'makes a GET request for all components defined in the issue tracker' do
