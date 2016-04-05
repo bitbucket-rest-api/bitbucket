@@ -80,7 +80,7 @@ module BitBucket
       end
     end
 
-    def update_and_validate_user_repo_params(user_name, repo_name)
+    def update_and_validate_user_repo_params(user_name, repo_name=nil)
       _update_user_repo_params(user_name, repo_name)
       _validate_user_repo_params(user, repo) unless user? && repo?
     end
