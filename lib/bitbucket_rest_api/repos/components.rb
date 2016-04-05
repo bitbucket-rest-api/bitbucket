@@ -21,5 +21,18 @@ module BitBucket
     end
     alias :all :list
 
+    # Get a component by it's ID
+    #
+    # = Examples
+    #  bitbucket = BitBucket.new
+    #  bitbucket.repos.components.get 'user-name', 'repo-name', 1
+    #
+    def get(user_name, repo_name, component_id, params={})
+      _update_user_repo_params(user_name, repo_name)
+      _validate_user_repo_params(user, repo) unless user? && repo?
+      normalize! params
+
+      get_request("/2.0/repositories/#{user}/#{repo.downcase}/components/#{component_id}", params)
+    end
   end
 end
