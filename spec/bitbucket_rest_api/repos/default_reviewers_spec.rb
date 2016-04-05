@@ -12,7 +12,7 @@ describe BitBucket::Repos::DefaultReviewers do
       )
     end
 
-    it 'makes a GET request for all pull requests belonging to the repo' do
+    it 'makes a GET request for all default reviewers belonging to the repo' do
       subject.list('mock_user', 'mock_repo')
     end
   end
@@ -27,7 +27,7 @@ describe BitBucket::Repos::DefaultReviewers do
       )
     end
 
-    it 'makes a GET request for all pull requests belonging to the repo' do
+    it 'makes a GET request for a default reviewer by username' do
       subject.get('mock_user', 'mock_repo', 'mock_reviewer')
     end
   end
@@ -42,7 +42,7 @@ describe BitBucket::Repos::DefaultReviewers do
       )
     end
 
-    it 'makes a GET request for all pull requests belonging to the repo' do
+    it 'makes a PUT request to add the new reviewer to the default reviewers list' do
       subject.add('mock_user', 'mock_repo', 'mock_reviewer')
     end
   end
@@ -57,7 +57,7 @@ describe BitBucket::Repos::DefaultReviewers do
       )
     end
 
-    it 'makes a GET request for all pull requests belonging to the repo' do
+    it 'makes a DELETE request to remove a reviewer from the list' do
       subject.remove('mock_user', 'mock_repo', 'mock_reviewer')
     end
   end
