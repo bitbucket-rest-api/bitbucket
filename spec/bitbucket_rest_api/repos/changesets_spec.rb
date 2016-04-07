@@ -10,11 +10,19 @@ describe BitBucket::Repos::Changesets do
         '/1.0/repositories/mock_username/mock_repo/changesets',
         {},
         {}
-      )
+      ).and_return(['changset1', 'changeset2', 'changeset3'])
     end
 
-    it 'should send a GET request for the changesets belonging to the given repo' do
-      changesets.list('mock_username', 'mock_repo')
+    context 'without a block' do
+      it 'should send a GET request for the changesets belonging to the given repo' do
+        changesets.list('mock_username', 'mock_repo')
+      end
+    end
+
+    context 'with a block' do
+      it 'should send a GET request for the changesets belonging to the given repo' do
+        changesets.list('mock_username', 'mock_repo') { |changeset| changeset }
+      end
     end
   end
 

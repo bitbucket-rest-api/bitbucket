@@ -16,7 +16,8 @@ module BitBucket
                  :Download    => 'download',
                  :Webhooks    => 'webhooks',
                  :PullRequest => 'pull_request',
-                 :Components => 'components'
+                 :Components => 'components',
+                 :DefaultReviewers => 'default_reviewers'
 
     DEFAULT_REPO_OPTIONS = {
         "website"         => "",
@@ -70,13 +71,13 @@ module BitBucket
       @services ||= ApiFactory.new 'Repos::Services'
     end
     def forks
-      @services ||= ApiFactory.new 'Repos::Forks'
+      @forks ||= ApiFactory.new 'Repos::Forks'
     end
     def commits
-      @services ||=ApiFactory.new 'Repos::Commits'
+      @commits ||=ApiFactory.new 'Repos::Commits'
     end
     def download
-      @services ||=ApiFactory.new "Repos::Download"
+      @download ||=ApiFactory.new "Repos::Download"
     end
 
     # Access to Repos::PullRequests API
@@ -86,6 +87,10 @@ module BitBucket
 
     def components
       @components ||= ApiFactory.new 'Repos::Components'
+    end
+
+    def default_reviewers
+      @default_reviewers ||= ApiFactory.new 'Repos::DefaultReviewers'
     end
 
     # List branches

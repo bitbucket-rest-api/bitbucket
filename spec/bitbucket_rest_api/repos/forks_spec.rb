@@ -10,11 +10,19 @@ describe BitBucket::Repos::Forks do
         '/2.0/repositories/mock_username/mock_repo/forks/',
         {},
         {}
-      )
+      ).and_return(['fork1', 'fork2', 'fork3'])
     end
 
-    it 'sends a GET request for the forks of the given repo' do
-      forks.list('mock_username', 'mock_repo')
+    context 'without a block' do
+      it 'sends a GET request for the forks of the given repo' do
+        forks.list('mock_username', 'mock_repo')
+      end
+    end
+
+    context 'with a block' do
+      it 'sends a GET request for the forks of the given repo' do
+        forks.list('mock_username', 'mock_repo') { |fork| fork }
+      end
     end
   end
 

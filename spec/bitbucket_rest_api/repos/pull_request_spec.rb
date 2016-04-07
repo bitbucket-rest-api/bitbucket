@@ -9,11 +9,19 @@ describe BitBucket::Repos::PullRequest do
         '/2.0/repositories/mock_user/mock_repo/pullrequests',
         {},
         {}
-      )
+      ).and_return(['pr1', 'pr2', 'pr3'])
     end
 
-    it 'makes a GET request for all pull requests belonging to the repo' do
-      subject.list('mock_user', 'mock_repo')
+    context 'without a block' do
+      it 'makes a GET request for all pull requests belonging to the repo' do
+        subject.list('mock_user', 'mock_repo')
+      end
+    end
+
+    context 'with a block' do
+      it 'makes a GET request for all pull requests belonging to the repo' do
+        subject.list('mock_user', 'mock_repo') { |pr| pr }
+      end
     end
   end
 
@@ -24,11 +32,19 @@ describe BitBucket::Repos::PullRequest do
         "/1.0/repositories/mock_user/mock_repo/pullrequests/mock_pull_request_id/participants",
         {},
         {}
-      )
+      ).and_return(['participant1', 'participant2', 'participant3'])
     end
 
-    it 'makes a GET request for all participants belonging to the repo' do
-      subject.participants('mock_user', 'mock_repo', 'mock_pull_request_id')
+    context 'without a block' do
+      it 'makes a GET request for all participants belonging to the repo' do
+        subject.participants('mock_user', 'mock_repo', 'mock_pull_request_id')
+      end
+    end
+
+    context 'with a block' do
+      it 'makes a GET request for all participants belonging to the repo' do
+        subject.participants('mock_user', 'mock_repo', 'mock_pull_request_id') { |p| p }
+      end
     end
   end
 
@@ -69,20 +85,20 @@ describe BitBucket::Repos::PullRequest do
         },
         close_source_branch: true
       }
+    end
 
+    it 'makes a POST request to create a new pull request' do
       expect(subject).to receive(:request).with(
         :post,
         '/2.0/repositories/mock_user/mock_repo/pullrequests',
         @params
       )
-    end
 
-    it 'makes a POST request to create a new pull request' do
       subject.create('mock_user', 'mock_repo', @params)
     end
 
-    xit 'validates presence of required params' do
-      # expect do
+    it 'validates presence of required params' do
+      expect do
       subject.create(
         'mock_user',
         'mock_repo',
@@ -108,7 +124,7 @@ describe BitBucket::Repos::PullRequest do
           close_source_branch: true
         }
       )
-      # end.to(raise_error())
+      end.to raise_error
     end
   end
 

@@ -25,6 +25,9 @@ describe Hash do
 
     it 'should convert nested keys to symbols' do
       expect(@nested_hash.symbolize_keys!).to eq @symbols
+
+      @nested_hash_with_array = { 'a' => { 'b' => [{'c' => 1}] } }
+      expect(@nested_hash_with_array.symbolize_keys!).to eq({:a=>{:b=>[{:c=>1}]}})
     end
   end
 

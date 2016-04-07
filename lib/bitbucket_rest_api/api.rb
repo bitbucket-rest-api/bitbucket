@@ -6,7 +6,6 @@ require 'bitbucket_rest_api/validations'
 require 'bitbucket_rest_api/request'
 require 'bitbucket_rest_api/core_ext/hash'
 require 'bitbucket_rest_api/core_ext/array'
-require 'bitbucket_rest_api/compatibility'
 require 'bitbucket_rest_api/api/actions'
 require 'bitbucket_rest_api/api_factory'
 
