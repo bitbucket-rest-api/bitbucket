@@ -10,6 +10,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{ Ruby wrapper for the BitBucket API supporting OAuth and Basic Authentication }
   gem.description   = %q{ Ruby wrapper for the BitBucket API supporting OAuth and Basic Authentication }
   gem.version       = BitBucket::VERSION::STRING.dup
+  gem.license       = "MIT"
 
   gem.files = Dir['Rakefile', '{features,lib,spec}/**/*', 'README*', 'LICENSE*']
   gem.require_paths = %w[ lib ]
