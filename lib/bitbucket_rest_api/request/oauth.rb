@@ -13,17 +13,19 @@ module BitBucket
 
       def call(env)
         # Extract parameters from the query
+        request = Rack::Request.new env
+        env[:url] = URI.parse(request.url) if env[:url].nil?
         params = {  }.update query_params(env[:url])
 
         if (@token and @secret) and (!@token.empty? and !@secret.empty?)
           access_token = ::OAuth::AccessToken.new(@consumer, @token, @secret)
           env[:url].query = build_query params
-          
+
           puts oauth_helper.header
           puts oauth_helper.header.class
           env[:request_headers].merge!(AUTH_HEADER => oauth_helper.header)
         end
-          
+
           env[:url].query = build_query params
 
 

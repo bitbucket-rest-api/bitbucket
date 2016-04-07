@@ -49,11 +49,19 @@ describe BitBucket::Repos do
         '/1.0/repositories/mock_username/mock_repo/branches/',
         {},
         {}
-      )
+      ).and_return(['branch1', 'branch2', 'branch3'])
     end
 
-    it 'invokes the .request method' do
-      repo.branches('mock_username', 'mock_repo')
+    context 'without a block' do
+      it 'invokes the .request method' do
+        repo.branches('mock_username', 'mock_repo')
+      end
+    end
+
+    context 'with a block' do
+      it 'invokes the .request method' do
+        repo.branches('mock_username', 'mock_repo') { |branch| branch }
+      end
     end
   end
 
@@ -95,12 +103,20 @@ describe BitBucket::Repos do
         '/1.0/user/repositories',
         {},
         {}
-      )
+      ).and_return(['repo1', 'repo2' ,'repo3'])
     end
 
     # FIXME: this method belongs in the User class!
-    it 'should send a GET request for the authenticated users repos' do
-      repo.list
+    context 'without a block' do
+      it 'should send a GET request for the authenticated users repos' do
+        repo.list
+      end
+    end
+
+    context 'with a block' do
+      it 'should send a GET request for the authenticated users repos' do
+        repo.list { |repo| repo }
+      end
     end
   end
 
@@ -111,11 +127,19 @@ describe BitBucket::Repos do
         '/1.0/repositories/mock_username/mock_repo/tags/',
         {},
         {}
-      )
+      ).and_return(['tag1', 'tag2' ,'tag3'])
     end
 
-    it 'should send a GET request for the tags belonging to the given repo' do
-      repo.tags('mock_username', 'mock_repo')
+    context 'without a block' do
+      it 'should send a GET request for the tags belonging to the given repo' do
+        repo.tags('mock_username', 'mock_repo')
+      end
+    end
+
+    context 'with a block' do
+      it 'should send a GET request for the tags belonging to the given repo' do
+        repo.tags('mock_username', 'mock_repo') { |tag| tag }
+      end
     end
   end
 
@@ -126,6 +150,8 @@ describe BitBucket::Repos do
       expect(repo.following).to be_a BitBucket::Repos::Following
       expect(repo.commits).to be_a BitBucket::Repos::Commits
       expect(repo.pull_request).to be_a BitBucket::Repos::PullRequest
+      expect(repo.forks).to be_a BitBucket::Repos::Forks
+      expect(repo.download).to be_a BitBucket::Repos::Download
     end
   end
 end

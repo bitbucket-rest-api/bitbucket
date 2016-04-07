@@ -6,7 +6,6 @@ require 'bitbucket_rest_api/validations'
 require 'bitbucket_rest_api/request'
 require 'bitbucket_rest_api/core_ext/hash'
 require 'bitbucket_rest_api/core_ext/array'
-require 'bitbucket_rest_api/compatibility'
 require 'bitbucket_rest_api/api/actions'
 require 'bitbucket_rest_api/api_factory'
 
@@ -78,6 +77,11 @@ module BitBucket
       else
         super
       end
+    end
+
+    def update_and_validate_user_repo_params(user_name, repo_name=nil)
+      _update_user_repo_params(user_name, repo_name)
+      _validate_user_repo_params(user, repo) unless user? && repo?
     end
 
     def _update_user_repo_params(user_name, repo_name=nil) # :nodoc:

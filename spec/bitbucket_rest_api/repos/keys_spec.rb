@@ -9,11 +9,19 @@ describe BitBucket::Repos::Keys do
         '/1.0/repositories/mock_username/mock_repo/deploy-keys/',
         {},
         {}
-      )
+      ).and_return(['key1', 'key2', 'key3'])
     end
 
-    it 'should make a GET request for the deploy keys belonging to the given repo' do
-      deploy_keys.list('mock_username', 'mock_repo')
+    context 'without a block' do
+      it 'should make a GET request for the deploy keys belonging to the given repo' do
+        deploy_keys.list('mock_username', 'mock_repo')
+      end
+    end
+
+    context 'with a block' do
+      it 'should make a GET request for the deploy keys belonging to the given repo' do
+        deploy_keys.list('mock_username', 'mock_repo') { |key| key }
+      end
     end
   end
 
