@@ -31,17 +31,5 @@ module BitBucket
       methods
     end
 
-    def append_arguments(method)
-      _method = self.method(method)
-      if _method.arity == 0
-        args = "()"
-      elsif _method.arity > 0
-        args = "(few)"
-      else
-        args = "(else)"
-      end
-      args
-    end
-
   end # API
 end # BitBucket

@@ -7,7 +7,7 @@ describe BitBucket::Request do
 
   describe "request" do
     it "raises an ArgumentError if an unsupported HTTP verb is used" do
-      expect { fake_api.new.request(:i_am_a_teapot, '/') }.to raise_error(ArgumentError)
+      expect { fake_api.new.request(:i_am_a_teapot, {}, '/') }.to raise_error(ArgumentError)
     end
 
     context "with a connection" do

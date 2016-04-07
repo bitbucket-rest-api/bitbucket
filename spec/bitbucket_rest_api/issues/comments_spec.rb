@@ -10,11 +10,19 @@ describe BitBucket::Issues::Comments do
         '/1.0/repositories/mock_username/mock_repo/issues/mock_issue_id/comments/',
         {},
         {}
-      )
+      ).and_return(['comment1', 'comment2', 'comment3'])
     end
 
-    it 'should make a GET request for the given issue' do
-      comments.list('mock_username', 'mock_repo', 'mock_issue_id')
+    context 'without a block' do
+      it 'should make a GET request for the given issue' do
+        comments.list('mock_username', 'mock_repo', 'mock_issue_id')
+      end
+    end
+
+    context 'with a block' do
+      it 'should make a GET request for the given issue' do
+        comments.list('mock_username', 'mock_repo', 'mock_issue_id') { |comment| comment }
+      end
     end
   end
 
