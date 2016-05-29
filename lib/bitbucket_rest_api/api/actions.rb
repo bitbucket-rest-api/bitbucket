@@ -17,33 +17,18 @@ module BitBucket
     end
 
     def api_methods_in(klass)
-      puts "---"
+      methods = []
       (klass.send(:instance_methods, false) - ['actions']).sort.each do |method|
-        puts "|--> #{method}"
+        methods << method
       end
       klass.included_modules.each do |mod|
         if mod.to_s =~ /#{klass}/
-          puts "| \\ #{mod.to_s}"
           mod.instance_methods(false).each do |met|
-            puts "|  |--> #{met}"
+            methods << met
           end
-          puts "| /"
         end
       end
-      puts "---"
-      nil
-    end
-
-    def append_arguments(method)
-      _method = self.method(method)
-      if _method.arity == 0
-        args = "()"
-      elsif _method.arity > 0
-        args = "(few)"
-      else
-        args = "(else)"
-      end
-      args
+      methods
     end
 
   end # API

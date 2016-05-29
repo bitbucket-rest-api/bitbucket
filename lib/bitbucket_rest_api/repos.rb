@@ -12,9 +12,11 @@ module BitBucket
                  :Following   => 'following',
                  :Sources     => 'sources',
                  :Forks       => 'forks',
-                 :Commits =>'commits',
-                 :Download=>'download',
-                 :PullRequest    => 'pull_request'
+                 :Commits     => 'commits',
+                 :Download    => 'download',
+                 :Webhooks    => 'webhooks',
+                 :PullRequest => 'pull_request',
+                 :DefaultReviewers => 'default_reviewers'
 
     DEFAULT_REPO_OPTIONS = {
         "website"         => "",
@@ -68,18 +70,22 @@ module BitBucket
       @services ||= ApiFactory.new 'Repos::Services'
     end
     def forks
-      @services ||= ApiFactory.new 'Repos::Forks'
+      @forks ||= ApiFactory.new 'Repos::Forks'
     end
     def commits
-      @services ||=ApiFactory.new 'Repos::Commits'
+      @commits ||=ApiFactory.new 'Repos::Commits'
     end
     def download
-      @services ||=ApiFactory.new "Repos::Download"
+      @download ||=ApiFactory.new "Repos::Download"
     end
 
     # Access to Repos::PullRequests API
     def pull_request
       @pull_request ||= ApiFactory.new 'Repos::PullRequest'
+    end
+
+    def default_reviewers
+      @default_reviewers ||= ApiFactory.new 'Repos::DefaultReviewers'
     end
 
     # List branches
@@ -92,7 +98,7 @@ module BitBucket
     #   repos = BitBucket::Repos.new
     #   repos.branches 'user-name', 'repo-name'
     #
-    def branches(user_name, repo_name, params={ })
+    def branches(user_name, repo_name, params={})
       _update_user_repo_params(user_name, repo_name)
       _validate_user_repo_params(user, repo) unless (user? && repo?)
       normalize! params
@@ -104,6 +110,7 @@ module BitBucket
 
     alias :list_branches :branches
 
+    # FIXME: 'POST a new repository' is a deprecated feature of the API
     # Create a new repository for the authenticated user.
     #
     # = Parameters
@@ -187,6 +194,7 @@ module BitBucket
 
     alias :find :get
 
+    # FIXME: 'DELETE an existing repository' is a deprecated feature of the API
     # Delete a repository
     #
     # = Examples

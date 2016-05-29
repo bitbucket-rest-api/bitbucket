@@ -30,6 +30,9 @@ end # BitBucket
   invalid_options
   required_params
   unknown_value
+  bad_events
+  no_events
+  blank_value
 ].each do |error|
   require "bitbucket_rest_api/error/#{error}"
 end

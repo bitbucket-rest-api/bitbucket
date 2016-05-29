@@ -24,7 +24,7 @@ describe BitBucket::Normalizer, '#normalize!' do
     it 'should stringify all the keys inside nested hash' do
       actual = subject.normalize! hash
       expected = { 'a' => { 'b'=> { 'c' => 1 }, 'd' => ['a', { 'e'=> 2 }] } }
-      actual.should be_eql expected
+      expect(actual).to eq expected
     end
   end
 end # BitBucket::Normalizer

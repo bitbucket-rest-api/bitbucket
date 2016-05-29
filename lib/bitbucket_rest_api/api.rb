@@ -6,7 +6,6 @@ require 'bitbucket_rest_api/validations'
 require 'bitbucket_rest_api/request'
 require 'bitbucket_rest_api/core_ext/hash'
 require 'bitbucket_rest_api/core_ext/array'
-require 'bitbucket_rest_api/compatibility'
 require 'bitbucket_rest_api/api/actions'
 require 'bitbucket_rest_api/api_factory'
 
@@ -80,6 +79,11 @@ module BitBucket
       end
     end
 
+    def update_and_validate_user_repo_params(user_name, repo_name=nil)
+      _update_user_repo_params(user_name, repo_name)
+      _validate_user_repo_params(user, repo) unless user? && repo?
+    end
+
     def _update_user_repo_params(user_name, repo_name=nil) # :nodoc:
       self.user = user_name || self.user
       self.repo = repo_name || self.repo
@@ -91,24 +95,6 @@ module BitBucket
 
     def _merge_user_repo_into_params!(params)   #  :nodoc:
       { 'user' => self.user, 'repo' => self.repo }.merge!(params)
-    end
-
-    # TODO: See whether still needed, consider adding to core_exts
-    def _hash_traverse(hash, &block)
-      hash.each do |key, val|
-        block.call(key)
-        case val
-        when Hash
-          val.keys.each do |k|
-            _hash_traverse(val, &block)
-          end
-        when Array
-          val.each do |item|
-            _hash_traverse(item, &block)
-          end
-        end
-      end
-      return hash
     end
 
     def _merge_mime_type(resource, params) # :nodoc:

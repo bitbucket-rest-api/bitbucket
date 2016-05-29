@@ -14,3 +14,6 @@ features/settings.yml
 TAGS
 .tags_sorted_by_file
 coverage
+tags
+/.idea
+.ruby-gemset
