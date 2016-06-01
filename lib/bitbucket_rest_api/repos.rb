@@ -12,7 +12,7 @@ module BitBucket
                  :Following   => 'following',
                  :Sources     => 'sources',
                  :Forks       => 'forks',
-                 :Commit     => 'commit',
+                 :Commit      => 'commit',
                  :Commits     => 'commits',
                  :Download    => 'download',
                  :Webhooks    => 'webhooks',
