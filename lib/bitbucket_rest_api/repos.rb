@@ -73,6 +73,9 @@ module BitBucket
       @forks ||= ApiFactory.new 'Repos::Forks'
     end
     def commits
+      @commit ||=ApiFactory.new 'Repos::Commit'
+    end
+    def commits
       @commits ||=ApiFactory.new 'Repos::Commits'
     end
     def download
