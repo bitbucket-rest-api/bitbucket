@@ -72,7 +72,7 @@ module BitBucket
     def forks
       @forks ||= ApiFactory.new 'Repos::Forks'
     end
-    def commits
+    def commit
       @commit ||=ApiFactory.new 'Repos::Commit'
     end
     def commits
