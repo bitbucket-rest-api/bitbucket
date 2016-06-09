@@ -31,7 +31,7 @@ describe BitBucket::Repos::Keys do
         :post,
         '/1.0/repositories/mock_username/mock_repo/deploy-keys/',
         { 'key' => 'mock_ssh_key', 'label' => 'mock_label' },
-        {}
+        { headers: {"Content-Type"=>"application/json"} }
       )
     end
 
