@@ -11,5 +11,6 @@ describe BitBucket::Client do
     expect(client.invitations).to be_a BitBucket::Invitations
     expect(client.pull_requests).to be_a BitBucket::Repos::PullRequest
     expect(client.oauth).to be_a BitBucket::Request::OAuth
+    expect(client.privileges).to be_a BitBucket::Privileges
   end
 end
