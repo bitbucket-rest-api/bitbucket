@@ -96,15 +96,32 @@ module BitBucket
       return response unless block_given?
     end
 
+    # Stack that is raw and will follow redirects needed by diffs
+    #
+    def raw_follow_middleware()
+      Proc.new do |builder|
+        #builder.use BitBucket::Request::Jsonize
+        builder.use Faraday::Request::Multipart
+        builder.use Faraday::Request::UrlEncoded
+        builder.use FaradayMiddleware::OAuth, {:consumer_key => client_id, :consumer_secret => client_secret, :token => oauth_token, :token_secret => oauth_secret} if client_id? and client_secret?
+        builder.use BitBucket::Request::BasicAuth, authentication if basic_authed?
+        builder.use BitBucket::Response::Helpers
+        builder.use BitBucket::Response::RaiseError
+        builder.use FaradayMiddleware::FollowRedirects
+        builder.adapter adapter
+      end
+    end
+
     def diff(user_name, repo_name, pull_request_id, params={})
       _update_user_repo_params(user_name, repo_name)
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
-
+      clear_cache
+      @connection = Faraday.new(default_options({}).merge(builder: Faraday::RackBuilder.new(&raw_follow_middleware)))
       response = request(:get, "/2.0/repositories/#{user}/#{repo.downcase}/pullrequests/#{pull_request_id}/diff", params)
+      clear_cache
       return response unless block_given?
     end
-
 
     def all_activity(user_name, repo_name, params={})
       _update_user_repo_params(user_name, repo_name)
