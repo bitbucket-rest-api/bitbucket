@@ -88,6 +88,10 @@ module BitBucket
       @default_reviewers ||= ApiFactory.new 'Repos::DefaultReviewers'
     end
 
+    def webhooks
+      @webhooks ||= ApiFactory.new 'Repos::Webhooks'
+    end
+
     # List branches
     #
     # = Examples
@@ -219,20 +223,19 @@ module BitBucket
     #
     # = Examples
     #   bitbucket = BitBucket.new
-    #   bitbucket.repos.list :user => 'user-name'
+    #   bitbucket.repos.list :user => 'user-name', :role => 'owner'
     #   bitbucket.repos.list :user => 'user-name', { |repo| ... }
     def list(*args)
       params = args.extract_options!
       normalize! params
       _merge_user_into_params!(params) unless params.has_key?('user')
-      filter! %w[ user type ], params
+      params.merge!('pagelen' => 100) unless params.has_key?('pagelen')
+      
+      filter! %w[ user role pagelen ], params
 
-      response = #if (user_name = params.delete("user"))
-                 #  get_request("/1.0/users/#{user_name}", params)
-                 #else
-                   # For authenticated user
-                   get_request("/1.0/user/repositories", params)
-                 #end
+      response = get_request("/2.0/repositories", params)
+
+      response = response[:values]
       return response unless block_given?
       response.each { |el| yield el }
     end

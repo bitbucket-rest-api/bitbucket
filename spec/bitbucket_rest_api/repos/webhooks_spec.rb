@@ -112,7 +112,7 @@ describe BitBucket::Repos::Webhooks, wip: true do
         :post,
         '/2.0/repositories/mock_username/mock_repo/hooks',
         post_put_params,
-        {}
+        { headers: { "Content-Type" => "application/json" } }
       )
 
       subject.create(
@@ -218,7 +218,7 @@ describe BitBucket::Repos::Webhooks, wip: true do
         :put,
         '/2.0/repositories/mock_username/mock_repo/hooks/mock_uuid',
         post_put_params,
-        {}
+        { headers: { "Content-Type" => "application/json" } }
       )
 
       subject.edit(
