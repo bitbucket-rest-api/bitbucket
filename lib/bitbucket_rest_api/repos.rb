@@ -17,6 +17,7 @@ module BitBucket
                  :Download    => 'download',
                  :Webhooks    => 'webhooks',
                  :PullRequest => 'pull_request',
+                 :Status      => 'statuses',
                  :DefaultReviewers => 'default_reviewers'
 
     DEFAULT_REPO_OPTIONS = {
@@ -81,6 +82,11 @@ module BitBucket
     end
     def download
       @download ||=ApiFactory.new "Repos::Download"
+    end
+
+    # Access to Repos::Status API
+    def status
+      @status ||= ApiFactory.new 'Repos::Status'
     end
 
     # Access to Repos::PullRequests API

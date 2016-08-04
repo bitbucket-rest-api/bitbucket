@@ -50,7 +50,11 @@ module BitBucket
           unless params.empty?
             # data = extract_data_from_params(params)
             # request.body = MultiJson.dump(data)
-            request.body = MultiJson.dump(params)
+            if path =~ /statuses\/build$/
+              request.body = params
+            else
+              request.body = MultiJson.dump(params)
+            end
           end
         end
       end
