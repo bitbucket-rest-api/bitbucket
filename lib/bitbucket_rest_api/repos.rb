@@ -13,6 +13,7 @@ module BitBucket
                  :Sources     => 'sources',
                  :Forks       => 'forks',
                  :Commits     => 'commits',
+                 :Commit      => 'commit',
                  :Download    => 'download',
                  :Webhooks    => 'webhooks',
                  :PullRequest => 'pull_request',
@@ -75,6 +76,11 @@ module BitBucket
     def commits
       @commits ||=ApiFactory.new 'Repos::Commits'
     end
+
+    def commit
+        @commit ||= ApiFactory.new 'Repos::Commit'
+    end
+
     def download
       @download ||=ApiFactory.new "Repos::Download"
     end
