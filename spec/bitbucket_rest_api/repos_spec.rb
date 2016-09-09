@@ -149,6 +149,7 @@ describe BitBucket::Repos do
       expect(repo.keys).to be_a BitBucket::Repos::Keys
       expect(repo.following).to be_a BitBucket::Repos::Following
       expect(repo.commits).to be_a BitBucket::Repos::Commits
+      expect(repo.commit).to be_a BitBucket::Repos::Commit
       expect(repo.pull_request).to be_a BitBucket::Repos::PullRequest
       expect(repo.forks).to be_a BitBucket::Repos::Forks
       expect(repo.download).to be_a BitBucket::Repos::Download
