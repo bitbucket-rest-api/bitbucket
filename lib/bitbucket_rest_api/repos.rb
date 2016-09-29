@@ -88,8 +88,8 @@ module BitBucket
       @default_reviewers ||= ApiFactory.new 'Repos::DefaultReviewers'
     end
 
-    # Access to Repos::PullRequests API
-    def pull_request
+    # Access to Repos::Webhooks API
+    def webhooks
       @pull_request ||= ApiFactory.new 'Repos::Webhooks'
     end
     
