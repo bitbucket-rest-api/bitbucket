@@ -90,7 +90,7 @@ module BitBucket
 
     # Access to Repos::Webhooks API
     def webhooks
-      @pull_request ||= ApiFactory.new 'Repos::Webhooks'
+      @webhooks ||= ApiFactory.new 'Repos::Webhooks'
     end
     
     # List branches
