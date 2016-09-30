@@ -88,6 +88,11 @@ module BitBucket
       @default_reviewers ||= ApiFactory.new 'Repos::DefaultReviewers'
     end
 
+    # Access to Repos::Webhooks API
+    def webhooks
+      @webhooks ||= ApiFactory.new 'Repos::Webhooks'
+    end
+    
     # List branches
     #
     # = Examples
