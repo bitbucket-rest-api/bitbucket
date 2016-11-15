@@ -21,8 +21,7 @@ module BitBucket
     alias :authorizations :oauth
 
     def teams(options = {})
-      raise "Unimplemented"
-      #@teams ||= ApiFactory.new 'teams', options
+      @teams ||= ApiFactory.new 'Teams', options
     end
 
     def pull_requests(options = {})
