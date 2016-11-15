@@ -16,6 +16,7 @@ module BitBucket
                  :Download    => 'download',
                  :Webhooks    => 'webhooks',
                  :PullRequest => 'pull_request',
+                 :Components => 'components',
                  :DefaultReviewers => 'default_reviewers'
                  :Components => 'components'
 
@@ -83,6 +84,10 @@ module BitBucket
     # Access to Repos::PullRequests API
     def pull_request
       @pull_request ||= ApiFactory.new 'Repos::PullRequest'
+    end
+
+    def components
+      @components ||= ApiFactory.new 'Repos::Components'
     end
 
     def default_reviewers
