@@ -17,6 +17,7 @@ module BitBucket
                  :Webhooks    => 'webhooks',
                  :PullRequest => 'pull_request',
                  :DefaultReviewers => 'default_reviewers'
+                 :Components => 'components'
 
     DEFAULT_REPO_OPTIONS = {
         "website"         => "",
@@ -86,6 +87,10 @@ module BitBucket
 
     def default_reviewers
       @default_reviewers ||= ApiFactory.new 'Repos::DefaultReviewers'
+    end
+
+    def components
+      @components ||= ApiFactory.new 'Repos::Components'
     end
 
     # List branches
