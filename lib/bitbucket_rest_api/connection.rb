@@ -90,6 +90,8 @@ module BitBucket
       puts "OPTIONS:#{conn_options.inspect}" if ENV['DEBUG']
 
       @connection ||= Faraday.new(conn_options.merge(:builder => stack(options))) do |faraday|
+        faraday.use FaradayMiddleware::FollowRedirects
+        faraday.adapter :net_http
         faraday.response :logger if ENV['DEBUG']
       end
     end
