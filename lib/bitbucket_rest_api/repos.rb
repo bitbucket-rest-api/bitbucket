@@ -119,6 +119,24 @@ module BitBucket
 
     alias :list_branches :branches
 
+    # Get main branch
+    #
+    # = Examples
+    #
+    #   bitbucket = BitBucket.new
+    #   bibucket.repos.main_branch 'user-name', 'repo-name'
+    #
+    #   repos = BitBucket::Repos.new
+    #   repos.main_branch 'user-name', 'repo-name'
+    #
+    def main_branch(user_name, repo_name, params={})
+      _update_user_repo_params(user_name, repo_name)
+      _validate_user_repo_params(user, repo) unless (user? && repo?)
+      normalize! params
+
+      get_request("/1.0/repositories/#{user}/#{repo.downcase}/main-branch", params)
+    end
+
     # FIXME: 'POST a new repository' is a deprecated feature of the API
     # Create a new repository for the authenticated user.
     #
