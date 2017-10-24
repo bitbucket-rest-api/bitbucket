@@ -198,7 +198,13 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
 
-      get_request("/1.0/repositories/#{user}/#{repo.downcase}", params)
+      url = if BitBucket.options[:bitbucket_server]
+              "/1.0/users/#{user}/repos/#{repo.downcase}"
+            else
+              "/1.0/repositories/#{user}/#{repo.downcase}"
+            end
+
+      get_request(url, params)
     end
 
     alias :find :get
