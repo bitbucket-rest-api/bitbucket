@@ -6,6 +6,7 @@ require 'bitbucket_rest_api/constants'
 require 'bitbucket_rest_api/utils/url'
 require 'bitbucket_rest_api/connection'
 require 'bitbucket_rest_api/deprecation'
+require 'bitbucket_rest_api/helpers/repository_helper'
 
 module BitBucket
   extend Configuration
