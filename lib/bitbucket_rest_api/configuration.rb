@@ -18,8 +18,12 @@ module BitBucket
         :user,
         :login,
         :password,
-        :basic_auth
+        :basic_auth,
+        :bitbucket_server
     ].freeze
+
+    # the URI schema is dependent on whether we are talking about BitBucket Cloud or Server
+    DEFAULT_BITBUCKET_SERVER   = false
 
     # Other adapters are :typhoeus, :patron, :em_synchrony, :excon, :test
     DEFAULT_ADAPTER            = :net_http
@@ -99,6 +103,8 @@ module BitBucket
       self.login              = DEFAULT_LOGIN
       self.password           = DEFAULT_PASSWORD
       self.basic_auth         = DEFAULT_BASIC_AUTH
+      self.bitbucket_server   = DEFAULT_BITBUCKET_SERVER
+
       self
     end
 
