@@ -100,10 +100,10 @@ describe BitBucket::Repos do
     before do
       expect(repo).to receive(:request).with(
         :get,
-        '/1.0/user/repositories',
-        {},
+        '/2.0/repositories',
+        {"pagelen" => 100},
         {}
-      ).and_return(['repo1', 'repo2' ,'repo3'])
+      ).and_return(values: ['repo1', 'repo2' ,'repo3'])
     end
 
     # FIXME: this method belongs in the User class!
