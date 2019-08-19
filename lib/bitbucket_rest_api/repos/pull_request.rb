@@ -52,7 +52,8 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
 
-      response = request(:post, "/2.0/repositories/#{user}/#{repo.downcase}/pullrequests", params)
+      options = { headers: { "Content-Type" => "application/json" } }
+      response = request(:post, "/2.0/repositories/#{user}/#{repo.downcase}/pullrequests", params, options)
       return response unless block_given?
     end
 
@@ -61,7 +62,8 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
 
-      response = request(:put, "/2.0/repositories/#{user}/#{repo.downcase}/pullrequests/#{pull_request_id}", params)
+      options = { headers: { "Content-Type" => "application/json" } }
+      response = request(:put, "/2.0/repositories/#{user}/#{repo.downcase}/pullrequests/#{pull_request_id}", params, options)
       return response unless block_given?
     end
 

@@ -85,13 +85,15 @@ describe BitBucket::Repos::PullRequest do
         },
         close_source_branch: true
       }
+      @options = { headers: { "Content-Type" => "application/json" } }
     end
 
     it 'makes a POST request to create a new pull request' do
       expect(subject).to receive(:request).with(
         :post,
         '/2.0/repositories/mock_user/mock_repo/pullrequests',
-        @params
+        @params,
+        @options
       )
 
       subject.create('mock_user', 'mock_repo', @params)
@@ -130,10 +132,12 @@ describe BitBucket::Repos::PullRequest do
 
   describe '.put' do
     before do
+      options = { headers: { "Content-Type" => "application/json" } }
       expect(subject).to receive(:request).with(
         :put,
         '/2.0/repositories/mock_user/mock_repo/pullrequests/mock_id',
-        {}
+        {},
+        options
       )
     end
 
