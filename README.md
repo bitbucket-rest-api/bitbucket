@@ -34,6 +34,12 @@ At this stage you can also supply various configuration parameters, such as `:us
 bitbucket = BitBucket.new oauth_token: 'request_token', oauth_secret: 'request_secret'
 ```
 
+or for OAuth2:
+
+```ruby
+bitbucket = BitBucket.new new_access_token: 'oauth2_access_token'
+```
+
 Alternatively, you can configure the BitBucket settings by passing a block:
 
 ```ruby
