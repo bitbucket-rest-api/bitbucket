@@ -22,7 +22,7 @@ describe BitBucket::Request do
           'Accept' => '*/*',
           'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
           'Authorization' => 'Bearer 12345',
-          'User-Agent' => 'Faraday v0.9.2'
+          'User-Agent' => "Faraday v#{Faraday::VERSION}"
           })
 
         fake_api.new.request(:get, '/1.0/endpoint', {}, {})
@@ -35,7 +35,7 @@ describe BitBucket::Request do
             'Accept' => '*/*',
             'Content-Type'=>'application/x-www-form-urlencoded',
             'Authorization' => 'Bearer 12345',
-            'User-Agent' => 'Faraday v0.9.2'
+            'User-Agent' => "Faraday v#{Faraday::VERSION}"
           })
 
         fake_api.new.request(:put, '/1.0/endpoint', { 'data' => { 'key' => 'value'} }, {})
@@ -48,7 +48,7 @@ describe BitBucket::Request do
             'Accept' => '*/*',
             'Content-Type'=>'application/x-www-form-urlencoded',
             'Authorization' => 'Bearer 12345',
-            'User-Agent' => 'Faraday v0.9.2'
+            'User-Agent' => "Faraday v#{Faraday::VERSION}"
           })
 
         fake_api.new.request(:patch, '/1.0/endpoint', { 'data' => { 'key' => 'value'} }, {})
@@ -59,7 +59,7 @@ describe BitBucket::Request do
          with(:headers => {
           'Accept' => '*/*',
           'Authorization' => 'Bearer 12345',
-          'User-Agent' => 'Faraday v0.9.2'
+          'User-Agent' => "Faraday v#{Faraday::VERSION}"
           })
         fake_api.new.request(:delete, '/1.0/endpoint', {}, {})
       end
@@ -71,7 +71,7 @@ describe BitBucket::Request do
             'Accept' => '*/*',
             'Content-Type'=>'application/x-www-form-urlencoded',
             'Authorization' => 'Bearer 12345',
-            'User-Agent' => 'Faraday v0.9.2'
+            'User-Agent' => "Faraday v#{Faraday::VERSION}"
           })
 
         fake_api.new.request(:post, '/1.0/endpoint', { 'data' => { 'key' => 'value'} }, {})
