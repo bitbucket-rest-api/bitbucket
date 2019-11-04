@@ -2,8 +2,19 @@ require 'spec_helper'
 require 'bitbucket_rest_api/request'
 
 describe BitBucket::Request do
-  let(:fake_api) { (Class.new { include BitBucket::Request })}
-  let(:faraday_connection) { Faraday.new(:url => 'https://api.bitbucket.org') }
+  let(:fake_api) do
+    Class.new do
+      include BitBucket::Request
+
+      def connection(*args)
+        Faraday.new(:url => 'https://api.bitbucket.org')
+      end
+
+      def new_access_token
+        "12345"
+      end
+    end
+  end
 
   describe "request" do
     it "raises an ArgumentError if an unsupported HTTP verb is used" do
@@ -11,11 +22,6 @@ describe BitBucket::Request do
     end
 
     context "with a connection" do
-      before do
-        (fake_api).any_instance.stubs(:connection).returns(faraday_connection)
-        (fake_api).any_instance.stubs(:new_access_token).returns("12345")
-      end
-
       it "supports get" do
         stub_request(:get, "https://api.bitbucket.org/1.0/endpoint").
          with(:headers => {
