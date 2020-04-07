@@ -12,12 +12,15 @@ module BitBucket
                  :Following   => 'following',
                  :Sources     => 'sources',
                  :Forks       => 'forks',
+                 :Commit      => 'commit',
                  :Commits     => 'commits',
                  :Download    => 'download',
                  :Webhooks    => 'webhooks',
                  :PullRequest => 'pull_request',
                  :DefaultReviewers => 'default_reviewers',
-                 :Components => 'components'
+                 :Components => 'components',
+                 :Status      => 'statuses',
+                 :DefaultReviewers => 'default_reviewers'
 
     DEFAULT_REPO_OPTIONS = {
         "website"         => "",
@@ -73,11 +76,19 @@ module BitBucket
     def forks
       @forks ||= ApiFactory.new 'Repos::Forks'
     end
+    def commit
+      @commit ||=ApiFactory.new 'Repos::Commit'
+    end
     def commits
       @commits ||=ApiFactory.new 'Repos::Commits'
     end
     def download
       @download ||=ApiFactory.new "Repos::Download"
+    end
+
+    # Access to Repos::Status API
+    def status
+      @status ||= ApiFactory.new 'Repos::Status'
     end
 
     # Access to Repos::PullRequests API
