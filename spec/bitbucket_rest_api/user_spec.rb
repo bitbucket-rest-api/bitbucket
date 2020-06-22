@@ -17,7 +17,7 @@ describe BitBucket::User do
 
   describe '#profile' do
     it 'sends the request to the right url' do
-      expect(@user).to receive(:request).with(:get, '/1.0/user', {}, {})
+      expect(@user).to receive(:request).with(:get, '/2.0/user', {}, {})
       @user.profile
     end
   end
@@ -28,49 +28,49 @@ describe BitBucket::User do
     end
 
     it 'sends the request to the right url' do
-      expect(@user).to receive(:request).with(:put, '/1.0/user', params, {})
+      expect(@user).to receive(:request).with(:put, '/2.0/user', params, {})
       @user.update(params)
     end
   end
 
   describe '#privileges' do
     it 'sends the request to the right url' do
-      expect(@user).to receive(:request).with(:get, '/1.0/user/privileges', {}, {})
+      expect(@user).to receive(:request).with(:get, '/2.0/user/privileges', {}, {})
       @user.privileges
     end
   end
 
   describe '#follows' do
     it 'sends the request to the right url' do
-      expect(@user).to receive(:request).with(:get, '/1.0/user/follows', {}, {})
+      expect(@user).to receive(:request).with(:get, '/2.0/user/follows', {}, {})
       @user.follows
     end
   end
 
   describe '#repositories' do
     it 'sends the request to the right url' do
-      expect(@user).to receive(:request).with(:get, '/1.0/user/repositories', {}, {})
+      expect(@user).to receive(:request).with(:get, '/2.0/user/repositories', {}, {})
       @user.repositories
     end
   end
 
   describe '#repos' do
     it 'sends the request to the right url' do
-      expect(@user).to receive(:request).with(:get, '/1.0/user/repositories', {}, {})
+      expect(@user).to receive(:request).with(:get, '/2.0/user/repositories', {}, {})
       @user.repos
     end
   end
 
   describe '#overview' do
     it 'sends the request to the right url' do
-      expect(@user).to receive(:request).with(:get, '/1.0/user/repositories/overview', {}, {})
+      expect(@user).to receive(:request).with(:get, '/2.0/user/repositories/overview', {}, {})
       @user.overview
     end
   end
 
   describe '#dashboard' do
     it 'sends the request to the right url' do
-      expect(@user).to receive(:request).with(:get, '/1.0/user/repositories/dashboard', {}, {})
+      expect(@user).to receive(:request).with(:get, '/2.0/user/repositories/dashboard', {}, {})
       @user.dashboard
     end
   end

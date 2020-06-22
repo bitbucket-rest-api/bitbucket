@@ -19,7 +19,7 @@ describe BitBucket::Repos::Sources do
       before do
         expect(subject).to receive(:request).with(
           :get,
-          '/1.0/repositories/mock_username/mock_repo/src/moch_sha/',
+          '/2.0/repositories/mock_username/mock_repo/src/moch_sha/',
           {},
           {}
         )
@@ -34,7 +34,7 @@ describe BitBucket::Repos::Sources do
       before do
         expect(subject).to receive(:request).with(
           :get,
-          '/1.0/repositories/mock_username/mock_repo/src/moch_sha/app/controller',
+          '/2.0/repositories/mock_username/mock_repo/src/moch_sha/app/controller',
           {},
           {}
         )
@@ -63,7 +63,7 @@ describe BitBucket::Repos::Sources do
       before do
         expect(subject).to receive(:request).with(
           :get,
-          '/1.0/repositories/mock_username/mock_repo/raw/moch_sha/app/assets/images/logo.jpg',
+          '/2.0/repositories/mock_username/mock_repo/raw/moch_sha/app/assets/images/logo.jpg',
           {},
           {}
         )

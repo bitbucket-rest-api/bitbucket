@@ -112,7 +112,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless (user? && repo?)
       normalize! params
 
-      response = get_request("/1.0/repositories/#{user}/#{repo.downcase}/branches/", params)
+      response = get_request("/2.0/repositories/#{user}/#{repo.downcase}/branches/", params)
       return response unless block_given?
       response.each { |el| yield el }
     end
@@ -154,7 +154,7 @@ module BitBucket
       assert_required_keys(%w[ name ], params)
 
       # Requires authenticated user
-      post_request("/1.0/repositories/", DEFAULT_REPO_OPTIONS.merge(params))
+      post_request("/2.0/repositories/", DEFAULT_REPO_OPTIONS.merge(params))
     end
 
     # Edit a repository
@@ -184,7 +184,7 @@ module BitBucket
       normalize! params
       filter! VALID_REPO_OPTIONS, params
 
-      put_request("/1.0/repositories/#{user}/#{repo.downcase}/", DEFAULT_REPO_OPTIONS.merge(params))
+      put_request("/2.0/repositories/#{user}/#{repo.downcase}/", DEFAULT_REPO_OPTIONS.merge(params))
     end
 
     # Get a repository
@@ -198,7 +198,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
 
-      get_request("/1.0/repositories/#{user}/#{repo.downcase}", params)
+      get_request("/2.0/repositories/#{user}/#{repo.downcase}", params)
     end
 
     alias :find :get
@@ -214,7 +214,7 @@ module BitBucket
       _update_user_repo_params(user_name, repo_name)
       _validate_user_repo_params(user, repo) unless user? && repo?
 
-      delete_request("/1.0/repositories/#{user}/#{repo.downcase}")
+      delete_request("/2.0/repositories/#{user}/#{repo.downcase}")
     end
 
     # List repositories for the authenticated user
@@ -259,7 +259,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
 
-      response = get_request("/1.0/repositories/#{user}/#{repo.downcase}/tags/", params)
+      response = get_request("/2.0/repositories/#{user}/#{repo.downcase}/tags/", params)
       return response unless block_given?
       response.each { |el| yield el }
     end
