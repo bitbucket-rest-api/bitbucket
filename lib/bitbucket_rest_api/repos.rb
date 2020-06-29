@@ -6,18 +6,20 @@ module BitBucket
 
     # Load all the modules after initializing Repos to avoid superclass mismatch
     autoload_all 'bitbucket_rest_api/repos',
-                 :Changesets  => 'changesets',
-                 :Keys        => 'keys',
-                 :Services    => 'services',
-                 :Following   => 'following',
-                 :Sources     => 'sources',
-                 :Forks       => 'forks',
-                 :Commits     => 'commits',
-                 :Download    => 'download',
-                 :Webhooks    => 'webhooks',
-                 :PullRequest => 'pull_request',
-                 :DefaultReviewers => 'default_reviewers',
-                 :Components => 'components'
+                 :Changesets         => 'changesets',
+                 :Keys               => 'keys',
+                 :Services           => 'services',
+                 :Following          => 'following',
+                 :Sources            => 'sources',
+                 :Forks              => 'forks',
+                 :Commits            => 'commits',
+                 :BranchRestrictions => 'branch_restrictions',
+                 :Pipelines          => 'pipelines',
+                 :Download           => 'download',
+                 :Webhooks           => 'webhooks',
+                 :PullRequest        => 'pull_request',
+                 :DefaultReviewers   => 'default_reviewers',
+                 :Components         => 'components'
 
     DEFAULT_REPO_OPTIONS = {
         "website"         => "",
@@ -78,6 +80,14 @@ module BitBucket
     end
     def download
       @download ||=ApiFactory.new "Repos::Download"
+    end
+
+    def branch_restrictions
+      @branch_restrictions ||= ApiFactory.new "Repos::BranchRestrictions"
+    end
+
+    def pipelines
+      @pipelines ||= ApiFactory.new "Repos::Pipelines"
     end
 
     # Access to Repos::PullRequests API
@@ -233,12 +243,26 @@ module BitBucket
     def list(*args)
       params = args.extract_options!
       normalize! params
-      _merge_user_into_params!(params) unless params.has_key?('user')
+
+      if params.has_key?('user') && params.has_key?('workspace')
+        raise StandardError, "Can't pass both the user and the workspace params."
+      end
+
+      path = "/2.0/repositories"
+
+      if params.has_key?('user')
+        path << "/#{params['user']}"
+      elsif params.has_key?('workspace')
+        path << "/#{params['workspace']}"
+      else
+        _merge_user_into_params!(params)
+      end
+
       params.merge!('pagelen' => 100) unless params.has_key?('pagelen')
       
       filter! %w[ user role pagelen ], params
 
-      response = get_request("/2.0/repositories", params)
+      response = get_request(path, params)
 
       response = response[:values]
       return response unless block_given?
