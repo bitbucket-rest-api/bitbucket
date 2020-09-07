@@ -65,6 +65,21 @@ describe BitBucket::Repos do
     end
   end
 
+  describe '.main_branch' do
+    before do
+      expect(repo).to receive(:request).with(
+        :get,
+        '/1.0/repositories/mock_username/mock_repo/main-branch',
+        {},
+        {}
+      )
+    end
+
+    it 'should send a GET request for the main branch' do
+      repo.main_branch('mock_username', 'mock_repo')
+    end
+  end
+
   describe '.edit' do
     before do
       expect(repo).to receive(:request).with(
