@@ -25,7 +25,7 @@ module BitBucket
       _merge_user_into_params!(params)
       params.merge!('pagelen' => 100) unless params.has_key?('pagelen')
       
-      filter! %w[ pagelen ], params
+      filter! %w[ pagelen role ], params
 
       response = get_request("/2.0/workspaces", params)
 
