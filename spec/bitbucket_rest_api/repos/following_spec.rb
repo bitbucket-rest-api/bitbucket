@@ -7,7 +7,7 @@ describe BitBucket::Repos::Following do
     before do
       expect(following).to receive(:request).with(
         :get,
-        '/1.0/repositories/mock_username/mock_repo/followers/',
+        '/2.0/repositories/mock_username/mock_repo/followers/',
         {},
         {}
       ).and_return(['follower1', 'follower2', 'follower3'])
@@ -31,7 +31,7 @@ describe BitBucket::Repos::Following do
     before do
       expect(following).to receive(:request).with(
         :get,
-        '/1.0/user/follows',
+        '/2.0/user/follows',
         {},
         {}
       ).and_return(['followed1', 'followed2', 'followed3'])

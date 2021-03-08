@@ -7,7 +7,7 @@ describe BitBucket::Issues::Milestones do
     before do
       expect(subject).to receive(:request).with(
         :get,
-        '/1.0/repositories/mock_username/mock_repo/issues/milestones',
+        '/2.0/repositories/mock_username/mock_repo/issues/milestones',
         {},
         {}
       ).and_return(['milsetone1', 'milestone2', 'milestone3'])
@@ -30,7 +30,7 @@ describe BitBucket::Issues::Milestones do
     before do
       expect(subject).to receive(:request).with(
         :get,
-        '/1.0/repositories/mock_username/mock_repo/issues/milestones/mock_milestone_id',
+        '/2.0/repositories/mock_username/mock_repo/issues/milestones/mock_milestone_id',
         {},
         {}
       )
@@ -45,7 +45,7 @@ describe BitBucket::Issues::Milestones do
     before do
       expect(subject).to receive(:request).with(
         :post,
-        '/1.0/repositories/mock_username/mock_repo/issues/milestones',
+        '/2.0/repositories/mock_username/mock_repo/issues/milestones',
         { 'name' => 'mock_name' },
         {}
       )
@@ -60,7 +60,7 @@ describe BitBucket::Issues::Milestones do
     before do
       expect(subject).to receive(:request).with(
         :put,
-        '/1.0/repositories/mock_username/mock_repo/issues/milestones/mock_milestone_id',
+        '/2.0/repositories/mock_username/mock_repo/issues/milestones/mock_milestone_id',
         { 'name' => 'mock_name' },
         {}
       )
@@ -75,7 +75,7 @@ describe BitBucket::Issues::Milestones do
     before do
       expect(subject).to receive(:request).with(
         :delete,
-        '/1.0/repositories/mock_username/mock_repo/issues/milestones/mock_milestone_id',
+        '/2.0/repositories/mock_username/mock_repo/issues/milestones/mock_milestone_id',
         {},
         {}
       )

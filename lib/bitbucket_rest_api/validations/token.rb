@@ -13,6 +13,7 @@ module BitBucket
           'get /user/following',
           'get /user/keys',
           'get /user/repos',
+          'get /user/workspaces',
           'patch /user',
           'post /user/emails',
           'post /user/keys',
