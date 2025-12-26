@@ -15,7 +15,7 @@ describe BitBucket::Repos do
     before do
       expect(repo).to receive(:request).with(
         :post,
-        '/1.0/repositories/',
+        '/2.0/repositories/',
         BitBucket::Repos::DEFAULT_REPO_OPTIONS.merge({ 'owner' => 'mock_owner', 'name' => 'mock_repo' }),
         {}
       )
@@ -30,7 +30,7 @@ describe BitBucket::Repos do
     before do
       expect(repo).to receive(:request).with(
         :delete,
-        '/1.0/repositories/mock_username/mock_repo',
+        '/2.0/repositories/mock_username/mock_repo',
         {},
         {}
       )
@@ -46,7 +46,7 @@ describe BitBucket::Repos do
     before do
       expect(repo).to receive(:request).with(
         :get,
-        '/1.0/repositories/mock_username/mock_repo/branches/',
+        '/2.0/repositories/mock_username/mock_repo/branches/',
         {},
         {}
       ).and_return(['branch1', 'branch2', 'branch3'])
@@ -69,7 +69,7 @@ describe BitBucket::Repos do
     before do
       expect(repo).to receive(:request).with(
         :put,
-        '/1.0/repositories/mock_username/mock_repo/',
+        '/2.0/repositories/mock_username/mock_repo/',
         BitBucket::Repos::DEFAULT_REPO_OPTIONS.merge({ 'owner' => 'mock_owner' }),
         {}
       )
@@ -85,7 +85,7 @@ describe BitBucket::Repos do
     before do
       expect(repo).to receive(:request).with(
         :get,
-        '/1.0/repositories/mock_username/mock_repo',
+        '/2.0/repositories/mock_username/mock_repo',
         {},
         {}
       )
@@ -124,7 +124,7 @@ describe BitBucket::Repos do
     before do
       expect(repo).to receive(:request).with(
         :get,
-        '/1.0/repositories/mock_username/mock_repo/tags/',
+        '/2.0/repositories/mock_username/mock_repo/tags/',
         {},
         {}
       ).and_return(['tag1', 'tag2' ,'tag3'])

@@ -7,7 +7,7 @@ describe BitBucket::Issues::Comments do
     before do
       expect(comments).to receive(:request).with(
         :get,
-        '/1.0/repositories/mock_username/mock_repo/issues/mock_issue_id/comments/',
+        '/2.0/repositories/mock_username/mock_repo/issues/mock_issue_id/comments/',
         {},
         {}
       ).and_return(['comment1', 'comment2', 'comment3'])
@@ -30,7 +30,7 @@ describe BitBucket::Issues::Comments do
     before do
       expect(comments).to receive(:request).with(
         :get,
-        '/1.0/repositories/mock_username/mock_repo/issues/comments/mock_comment_id',
+        '/2.0/repositories/mock_username/mock_repo/issues/comments/mock_comment_id',
         {},
         {}
       )
@@ -45,7 +45,7 @@ describe BitBucket::Issues::Comments do
     before do
       expect(comments).to receive(:request).with(
         :post,
-        '/1.0/repositories/mock_username/mock_repo/issues/mock_issue_id/comments/',
+        '/2.0/repositories/mock_username/mock_repo/issues/mock_issue_id/comments/',
         {'content' => 'mock_comment'},
         {}
       )
@@ -60,7 +60,7 @@ describe BitBucket::Issues::Comments do
     before do
       expect(comments).to receive(:request).with(
         :put,
-        '/1.0/repositories/mock_username/mock_repo/issues/comments/mock_comment_id',
+        '/2.0/repositories/mock_username/mock_repo/issues/comments/mock_comment_id',
         {'content' => 'new_mock_comment'},
         {}
       )
@@ -75,7 +75,7 @@ describe BitBucket::Issues::Comments do
     before do
       expect(comments).to receive(:request).with(
         :delete,
-        '/1.0/repositories/mock_username/mock_repo/issues/comments/mock_comment_id',
+        '/2.0/repositories/mock_username/mock_repo/issues/comments/mock_comment_id',
         {},
         {}
       )

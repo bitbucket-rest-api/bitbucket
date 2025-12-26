@@ -7,7 +7,7 @@ module BitBucket
     dependency 'hashie/mash'
 
     define_parser do |body|
-      ::Hashie::Mash.new body
+      ::Hashie::Mash.quiet.new body
     end
 
     def parse(body)

@@ -72,6 +72,7 @@ module BitBucket
                :Result          => 'result',
 
                :Repos           => 'repos',
+               :Workspaces      => 'workspaces',
                #:Error           => 'error',
                :Issues          => 'issues',
                :User            => 'user',

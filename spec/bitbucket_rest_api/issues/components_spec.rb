@@ -7,7 +7,7 @@ describe BitBucket::Issues::Components do
     before do
       expect(subject).to receive(:request).with(
         :get,
-        '/1.0/repositories/mock_username/mock_repo/issues/components',
+        '/2.0/repositories/mock_username/mock_repo/issues/components',
         {},
         {}
       ).and_return(['component1', 'component2', 'component3'])
@@ -30,7 +30,7 @@ describe BitBucket::Issues::Components do
     before do
       expect(subject).to receive(:request).with(
         :get,
-        '/1.0/repositories/mock_username/mock_repo/issues/components/mock_component_id',
+        '/2.0/repositories/mock_username/mock_repo/issues/components/mock_component_id',
         {},
         {}
       )
@@ -45,7 +45,7 @@ describe BitBucket::Issues::Components do
     before do
       expect(subject).to receive(:request).with(
         :post,
-        '/1.0/repositories/mock_username/mock_repo/issues/components',
+        '/2.0/repositories/mock_username/mock_repo/issues/components',
         { 'name' => 'mock_name' },
         {}
       )
@@ -60,7 +60,7 @@ describe BitBucket::Issues::Components do
     before do
       expect(subject).to receive(:request).with(
         :put,
-        '/1.0/repositories/mock_username/mock_repo/issues/components/mock_component_id',
+        '/2.0/repositories/mock_username/mock_repo/issues/components/mock_component_id',
         { 'name' => 'mock_name' },
         {}
       )
@@ -75,7 +75,7 @@ describe BitBucket::Issues::Components do
     before do
       expect(subject).to receive(:request).with(
         :delete,
-        '/1.0/repositories/mock_username/mock_repo/issues/components/mock_component_id',
+        '/2.0/repositories/mock_username/mock_repo/issues/components/mock_component_id',
         {},
         {}
       )

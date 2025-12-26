@@ -7,7 +7,7 @@ describe BitBucket::Invitations do
     before do
       expect(subject).to receive(:request).with(
         :post,
-        "/1.0/invitations/mock_username/mock_repo/mock_email_address",
+        "/2.0/invitations/mock_username/mock_repo/mock_email_address",
         { :permission => 'read' },
         {}
       )

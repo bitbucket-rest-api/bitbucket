@@ -29,7 +29,7 @@ describe BitBucket::Repos::PullRequest do
     before do
       expect(subject).to receive(:request).with(
         :get,
-        "/1.0/repositories/mock_user/mock_repo/pullrequests/mock_pull_request_id/participants",
+        "/2.0/repositories/mock_user/mock_repo/pullrequests/mock_pull_request_id/participants",
         {},
         {}
       ).and_return(['participant1', 'participant2', 'participant3'])

@@ -33,6 +33,10 @@ module BitBucket
     end
     alias :repositories :repos
 
+    def workspaces(options = {})
+      @workspaces ||= ApiFactory.new 'Workspaces', options
+    end
+
     def search(options = {})
       raise "Unimplemented"
       #@search ||= ApiFactory.new 'Search', options

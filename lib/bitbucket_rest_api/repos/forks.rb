@@ -61,7 +61,7 @@ module BitBucket
       assert_required_keys(REQUIRED_KEY_PARAM_NAMES, params)
       filter! VALID_REPO_OPTIONS, params
 
-      post_request("/1.0/repositories/#{user}/#{repo.downcase}/fork", params)
+      post_request("/2.0/repositories/#{user}/#{repo.downcase}/fork", params)
     end
 
 

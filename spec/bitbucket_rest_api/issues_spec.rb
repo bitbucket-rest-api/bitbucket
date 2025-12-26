@@ -8,7 +8,7 @@ describe BitBucket::Issues do
     before do
       expect(issue).to receive(:request).with(
         :post,
-        '/1.0/repositories/mock_username/mock_repo/issues/',
+        '/2.0/repositories/mock_username/mock_repo/issues/',
         { 'title' => 'mock_issue' },
         {}
       )
@@ -23,7 +23,7 @@ describe BitBucket::Issues do
     before do
       expect(issue).to receive(:request).with(
         :put,
-        '/1.0/repositories/mock_username/mock_repo/issues/1/',
+        '/2.0/repositories/mock_username/mock_repo/issues/1/',
         { 'title' => 'new_title' },
         {}
       )
@@ -38,7 +38,7 @@ describe BitBucket::Issues do
     before do
       expect(issue).to receive(:request).with(
         :get,
-        '/1.0/repositories/mock_username/mock_repo/issues/1',
+        '/2.0/repositories/mock_username/mock_repo/issues/1',
         {},
         {}
       )
@@ -53,7 +53,7 @@ describe BitBucket::Issues do
     before do
       expect(issue).to receive(:request).with(
         :delete,
-        '/1.0/repositories/mock_username/mock_repo/issues/1',
+        '/2.0/repositories/mock_username/mock_repo/issues/1',
         {},
         {}
       )
@@ -68,7 +68,7 @@ describe BitBucket::Issues do
     before do
       expect(issue).to receive(:request).with(
         :get,
-        '/1.0/repositories/mock_username/mock_repo/issues',
+        '/2.0/repositories/mock_username/mock_repo/issues',
         {},
         {}
       ).and_return(OpenStruct.new(:issues => [])).twice

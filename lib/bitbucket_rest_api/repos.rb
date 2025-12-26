@@ -6,18 +6,20 @@ module BitBucket
 
     # Load all the modules after initializing Repos to avoid superclass mismatch
     autoload_all 'bitbucket_rest_api/repos',
-                 :Changesets  => 'changesets',
-                 :Keys        => 'keys',
-                 :Services    => 'services',
-                 :Following   => 'following',
-                 :Sources     => 'sources',
-                 :Forks       => 'forks',
-                 :Commits     => 'commits',
-                 :Download    => 'download',
-                 :Webhooks    => 'webhooks',
-                 :PullRequest => 'pull_request',
-                 :DefaultReviewers => 'default_reviewers',
-                 :Components => 'components'
+                 :Changesets         => 'changesets',
+                 :Keys               => 'keys',
+                 :Services           => 'services',
+                 :Following          => 'following',
+                 :Sources            => 'sources',
+                 :Forks              => 'forks',
+                 :Commits            => 'commits',
+                 :BranchRestrictions => 'branch_restrictions',
+                 :Pipelines          => 'pipelines',
+                 :Download           => 'download',
+                 :Webhooks           => 'webhooks',
+                 :PullRequest        => 'pull_request',
+                 :DefaultReviewers   => 'default_reviewers',
+                 :Components         => 'components'
 
     DEFAULT_REPO_OPTIONS = {
         "website"         => "",
@@ -80,6 +82,14 @@ module BitBucket
       @download ||=ApiFactory.new "Repos::Download"
     end
 
+    def branch_restrictions
+      @branch_restrictions ||= ApiFactory.new "Repos::BranchRestrictions"
+    end
+
+    def pipelines
+      @pipelines ||= ApiFactory.new "Repos::Pipelines"
+    end
+
     # Access to Repos::PullRequests API
     def pull_request
       @pull_request ||= ApiFactory.new 'Repos::PullRequest'
@@ -112,7 +122,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless (user? && repo?)
       normalize! params
 
-      response = get_request("/1.0/repositories/#{user}/#{repo.downcase}/branches/", params)
+      response = get_request("/2.0/repositories/#{user}/#{repo.downcase}/refs/branches/", params)
       return response unless block_given?
       response.each { |el| yield el }
     end
@@ -154,7 +164,7 @@ module BitBucket
       assert_required_keys(%w[ name ], params)
 
       # Requires authenticated user
-      post_request("/1.0/repositories/", DEFAULT_REPO_OPTIONS.merge(params))
+      post_request("/2.0/repositories/", DEFAULT_REPO_OPTIONS.merge(params))
     end
 
     # Edit a repository
@@ -184,7 +194,7 @@ module BitBucket
       normalize! params
       filter! VALID_REPO_OPTIONS, params
 
-      put_request("/1.0/repositories/#{user}/#{repo.downcase}/", DEFAULT_REPO_OPTIONS.merge(params))
+      put_request("/2.0/repositories/#{user}/#{repo.downcase}/", DEFAULT_REPO_OPTIONS.merge(params))
     end
 
     # Get a repository
@@ -198,7 +208,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
 
-      get_request("/1.0/repositories/#{user}/#{repo.downcase}", params)
+      get_request("/2.0/repositories/#{user}/#{repo.downcase}", params)
     end
 
     alias :find :get
@@ -214,7 +224,7 @@ module BitBucket
       _update_user_repo_params(user_name, repo_name)
       _validate_user_repo_params(user, repo) unless user? && repo?
 
-      delete_request("/1.0/repositories/#{user}/#{repo.downcase}")
+      delete_request("/2.0/repositories/#{user}/#{repo.downcase}")
     end
 
     # List repositories for the authenticated user
@@ -233,12 +243,26 @@ module BitBucket
     def list(*args)
       params = args.extract_options!
       normalize! params
-      _merge_user_into_params!(params) unless params.has_key?('user')
+
+      if params.has_key?('user') && params.has_key?('workspace')
+        raise StandardError, "Can't pass both the user and the workspace params."
+      end
+
+      path = "/2.0/repositories"
+
+      if params.has_key?('user')
+        path << "/#{params['user']}"
+      elsif params.has_key?('workspace')
+        path << "/#{params['workspace']}"
+      else
+        _merge_user_into_params!(params)
+      end
+
       params.merge!('pagelen' => 100) unless params.has_key?('pagelen')
       
       filter! %w[ user role pagelen ], params
 
-      response = get_request("/2.0/repositories", params)
+      response = get_request(path, params)
 
       response = response[:values]
       return response unless block_given?
@@ -259,7 +283,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
 
-      response = get_request("/1.0/repositories/#{user}/#{repo.downcase}/tags/", params)
+      response = get_request("/2.0/repositories/#{user}/#{repo.downcase}/tags/", params)
       return response unless block_given?
       response.each { |el| yield el }
     end

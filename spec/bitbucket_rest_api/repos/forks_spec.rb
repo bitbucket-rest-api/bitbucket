@@ -32,7 +32,7 @@ describe BitBucket::Repos::Forks do
     before do
       expect(forks).to receive(:request).with(
         :post,
-        '/1.0/repositories/mock_username/mock_repo/fork',
+        '/2.0/repositories/mock_username/mock_repo/fork',
         { 'name' => 'mock_fork_name'},
         {}
       )

@@ -7,7 +7,7 @@ describe BitBucket::Repos::Changesets do
     before do
       expect(changesets).to receive(:request).with(
         :get,
-        '/1.0/repositories/mock_username/mock_repo/changesets',
+        '/2.0/repositories/mock_username/mock_repo/changesets',
         {},
         {}
       ).and_return(['changset1', 'changeset2', 'changeset3'])
@@ -30,7 +30,7 @@ describe BitBucket::Repos::Changesets do
     before do
       expect(changesets).to receive(:request).with(
         :get,
-        '/1.0/repositories/mock_username/mock_repo/changesets/test_sha',
+        '/2.0/repositories/mock_username/mock_repo/changesets/test_sha',
         {},
         {}
       )

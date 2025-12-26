@@ -33,7 +33,7 @@ module BitBucket
       _validate_user_repo_params(user, repo) unless user? && repo?
       normalize! params
 
-      response = get_request("/1.0/repositories/#{user}/#{repo.downcase}/pullrequests/#{pull_request_id}/participants", params)
+      response = get_request("/2.0/repositories/#{user}/#{repo.downcase}/pullrequests/#{pull_request_id}/participants", params)
       return response unless block_given?
       response.each { |el| yield el }
     end
